@@ -5,4 +5,4 @@
 node_modules/
 
 # Ignore generated bundle file
-client/public/scripts/bundle.js
+client/public/scripts/*Bundle.js
