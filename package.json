@@ -1,0 +1,23 @@
+{
+  "name": "notes-project",
+  "scripts": {
+    "start": "node server/main.js"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-react"
+    ]
+  },
+  "dependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/preset-react": "^7.9.4",
+    "babel-core": "^6.26.3",
+    "babelify": "^10.0.0",
+    "browserify": "^16.5.1",
+    "express": "^4.17.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "reactify": "^1.1.1",
+    "watchify": "^3.11.1"
+  }
+}

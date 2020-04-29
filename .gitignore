@@ -1,0 +1,8 @@
+# Ignore personal IDE configuration
+.idea/
+
+# Ignore npm modules
+node_modules/
+
+# Ignore generated bundle file
+client/public/scripts/bundle.js
