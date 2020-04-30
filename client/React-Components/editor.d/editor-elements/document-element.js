@@ -32,15 +32,32 @@ class Element extends React.Component{
         this.setState({content: event.target.value})
     }
 
+    dragElement(event)
+    {
+        console.log('dragging');
+    }
+
+    dropElement(event)
+    {
+        console.log('dropping');
+    }
+
     render()
     {
         let type = "text";
         let className = "form-control my-2 border-0";
         let style = this.style;
         let placeholder = "Content goes here...";
-
-        return <input type={type} value={this.state.content} placeholder={placeholder}
-                      onChange={this.onInputChange} className={className} style={style} />
+        return (
+            <div id={'elem' + this.props.elemId} className="input-group flex-nowrap">
+                <span className="btn p-0 mt-3 align-bottom material-icons"
+                      draggable onDrag={this.dragElement} onDrop={this.dropElement}>
+                    drag_handle
+                </span>
+                <input type={type} value={this.state.content} placeholder={placeholder}
+                       onChange={this.onInputChange} className={className} style={style} />
+            </div>
+        )
     }
 }
 

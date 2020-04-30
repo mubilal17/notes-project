@@ -14,7 +14,7 @@ class DocumentPage extends React.Component {
         if (children != null && children.length > 0)
         {
             elements = children.map((element, index) => {
-                return <Element key={'docElem' + index} type={element.type} content={element.content} />;
+                return <Element key={'docElem' + index} elemId={index} type={element.type} content={element.content} />;
             });
         }
         return (
