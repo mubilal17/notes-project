@@ -24,6 +24,7 @@ class Element extends React.Component{
             Object.assign(style, hStyle);
         this.style = style;
         this.onInputChange = this.onInputChange.bind(this);
+        this.toggleDragButtonVisibility = this.toggleDragButtonVisibility.bind(this);
     }
 
     onInputChange(event)
@@ -42,6 +43,24 @@ class Element extends React.Component{
         console.log('dropping');
     }
 
+    toggleDragButtonVisibility(event)
+    {
+        const elem = $('#elem' + this.props.elemId + ' span');
+        console.log(event.type);
+        if (event.type == 'mouseenter')
+        {
+            console.log('entered');
+            elem.removeClass('invisible')
+                .addClass('visible');
+        }
+        else
+        {
+            console.log('leaved');
+            elem.removeClass('visible')
+                .addClass('invisible');
+        }
+    }
+
     render()
     {
         let type = "text";
@@ -49,8 +68,9 @@ class Element extends React.Component{
         let style = this.style;
         let placeholder = "Content goes here...";
         return (
-            <div id={'elem' + this.props.elemId} className="input-group flex-nowrap">
-                <span className="btn p-0 mt-3 align-bottom material-icons"
+            <div id={'elem' + this.props.elemId} className="input-group flex-nowrap"
+                 onMouseEnter={this.toggleDragButtonVisibility} onMouseLeave={this.toggleDragButtonVisibility}>
+                <span className="btn p-0 mt-3 align-bottom material-icons invisible" style={ {cursor: 'move'}}
                       draggable onDrag={this.dragElement} onDrop={this.dropElement}>
                     drag_handle
                 </span>
