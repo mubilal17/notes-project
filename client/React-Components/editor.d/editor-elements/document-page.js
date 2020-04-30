@@ -1,5 +1,6 @@
 const Element = require('./document-element');
 
+
 class DocumentPage extends React.Component {
     constructor(props)
     {

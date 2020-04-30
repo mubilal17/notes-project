@@ -13,6 +13,7 @@ class Element extends React.Component{
     {
         super(props);
         this.type = this.props.type;
+        this.state = {content: this.props.content}
 
         let style = {};
         Object.assign(style, pStyle);
@@ -22,11 +23,13 @@ class Element extends React.Component{
         if (this.type == 'h')
             Object.assign(style, hStyle);
         this.style = style;
+        this.onInputChange = this.onInputChange.bind(this);
     }
 
-    onFocus()
+    onInputChange(event)
     {
-
+        console.log('typing...');
+        this.setState({content: event.target.value})
     }
 
     render()
@@ -36,10 +39,8 @@ class Element extends React.Component{
         let style = this.style;
         let placeholder = "Content goes here...";
 
-        if (this.props.content != null)
-            return <input type={type} value={this.props.content} className={className} style={style} />
-        else
-            return <input type={type} placeholder={placeholder} className={className} style={style} />
+        return <input type={type} value={this.state.content} placeholder={placeholder}
+                      onChange={this.onInputChange} className={className} style={style} />
     }
 }
 
