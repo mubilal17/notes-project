@@ -1,6 +1,9 @@
 # Ignore personal IDE configuration
 .idea/
 
+# ignore build folder
+build/
+
 # Ignore npm modules
 node_modules/
 
