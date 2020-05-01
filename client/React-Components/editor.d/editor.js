@@ -10,7 +10,7 @@ class Editor extends React.Component {
     {
         super(props);
         let document = this.props.document;
-        this.state = {documentTitle: document.title, documentWorkspace: document.parentWorkspace,
+        this.state = {documentTitle: document.title, documentWorkspace: document.workspace,
             documentElements: document.contentElements};
 
         this.updateContent = this.updateContent.bind(this);

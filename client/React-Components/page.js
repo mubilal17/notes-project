@@ -21,5 +21,10 @@ function updateDocument(documentUpdateEvent)
     }
 }
 
-ReactDOM.render(<Sidebar />, document.getElementById('sidebar-wrapper'));
+function onNavLinkClicked(event)
+{
+
+}
+
+ReactDOM.render(<Sidebar onNavLinkClicked={onNavLinkClicked}/>, document.getElementById('sidebar-wrapper'));
 ReactDOM.render(<Editor document={userDocument} onDocumentChange={updateDocument} />, document.getElementById('editor-wrapper'));

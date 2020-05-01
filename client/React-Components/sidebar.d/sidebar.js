@@ -1,4 +1,4 @@
-const SidebarLink = require('./sidebar-link.js')
+
 const SidebarNav = require('./sidebar-nav');
 
 let workspaceTitle = "Mathematics";
@@ -11,6 +11,7 @@ class Sidebar extends React.Component {
     constructor(props)
     {
         super(props);
+        this.onNavLinkClicked = this.onNavLinkClicked.bind(this);
     }
 
     componentDidMount()
@@ -18,6 +19,14 @@ class Sidebar extends React.Component {
         const hoverClasses = 'shadow-sm bg-white rounded'
         var dashboardBtn = $('#' + dashboardBtnId);
         dashboardBtn.hover(() => dashboardBtn.addClass(hoverClasses), () => dashboardBtn.removeClass(hoverClasses));
+    }
+
+    onNavLinkClicked(event)
+    {
+
+        console.log('clicked ' + event.documentSection + ' / ' + event.documentClicked);
+        if (this.props.onNavLinkClicked)
+            this.props.onNavLinkClicked(event);
     }
 
     render()
@@ -38,9 +47,9 @@ class Sidebar extends React.Component {
                 <hr />
 
                 <div className="px-3">
-                    <SidebarNav sectionTitle="Calculus"  active={true} />
-                    <SidebarNav sectionTitle="Differential Equations"/>
-                    <SidebarNav sectionTitle="Linear Algebra"/>
+                    <SidebarNav sectionTitle="Calculus"  active={true} onNavLinkClicked={this.onNavLinkClicked}/>
+                    <SidebarNav sectionTitle="Differential Equations" onNavLinkClicked={this.onNavLinkClicked}/>
+                    <SidebarNav sectionTitle="Linear Algebra" onNavLinkClicked={this.onNavLinkClicked}/>
                 </div>
             </div>
         )

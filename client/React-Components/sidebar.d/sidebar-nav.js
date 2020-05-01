@@ -9,6 +9,16 @@ class SidebarNav extends React.Component {
                 {this.props.sectionTitle}
                 { this.props.active ? <span className="material-icons text-success float-right" style={{fontSize: '1em'}}>sync_alt</span> : "" }
             </a>
+        this.onNavLinkClicked = this.onNavLinkClicked.bind(this);
+    }
+
+    onNavLinkClicked(event)
+    {
+        if (this.props.onNavLinkClicked)
+        {
+            event.documentSection = this.props.sectionTitle;
+            this.props.onNavLinkClicked(event);
+        }
     }
 
     render()
@@ -17,9 +27,9 @@ class SidebarNav extends React.Component {
             <div className="mt-5" style={ {'lineHeight': '0.5em'}}>
                 {this.title}
                 <nav className="nav  flex-column px-1 mt-3" style={ {'lineHeight': '1em'}}>
-                    <SidebarLink> Overview </SidebarLink>
-                    <SidebarLink active={this.props.active ? true : false}> Terminology </SidebarLink>
-                    <SidebarLink> Exercises </SidebarLink>
+                    <SidebarLink onNavLinkClicked={this.onNavLinkClicked} documentTitle={'Overview'} />
+                    <SidebarLink onNavLinkClicked={this.onNavLinkClicked} documentTitle={'Terminology'} active={this.props.active ? true : false} />
+                    <SidebarLink onNavLinkClicked={this.onNavLinkClicked} documentTitle={'Exercises'} />
                 </nav>
             </div>
         )
