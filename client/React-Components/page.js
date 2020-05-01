@@ -21,10 +21,21 @@ function updateDocument(documentUpdateEvent)
     }
 }
 
+
+const sections = ['Calculus', 'Differential Equations', 'Linear Algebra']
+const documentTitles = ['Overview', 'Terminology', 'Exercises'];
+
 function onNavLinkClicked(event)
 {
-
+    const activeSection = event.documentSection;
+    const documentActive = event.documentClicked;
+    ReactDOM.render(<Sidebar sections={sections} documentTitles={documentTitles} activeSection={activeSection}
+                             documentActive={documentActive} onNavLinkClicked={onNavLinkClicked}/>,
+        document.getElementById('sidebar-wrapper'));
 }
 
-ReactDOM.render(<Sidebar onNavLinkClicked={onNavLinkClicked}/>, document.getElementById('sidebar-wrapper'));
+
+ReactDOM.render(<Sidebar sections={sections} documentTitles={documentTitles} activeSection='Calculus' documentActive='Terminology' onNavLinkClicked={onNavLinkClicked}/>,
+    document.getElementById('sidebar-wrapper'));
+
 ReactDOM.render(<Editor document={userDocument} onDocumentChange={updateDocument} />, document.getElementById('editor-wrapper'));

@@ -23,10 +23,16 @@ class Sidebar extends React.Component {
 
     onNavLinkClicked(event)
     {
-
-        console.log('clicked ' + event.documentSection + ' / ' + event.documentClicked);
         if (this.props.onNavLinkClicked)
             this.props.onNavLinkClicked(event);
+    }
+
+    getNavView(sectionName)
+    {
+        const documentTitles = this.props.documentTitles;
+        return <SidebarNav key={sectionName}
+                            sectionTitle={sectionName} documentTitles={documentTitles} onNavLinkClicked={this.onNavLinkClicked}
+                           activeSection={this.props.activeSection == sectionName ? true : false} activeDocument={this.props.documentActive}/>
     }
 
     render()
@@ -47,9 +53,7 @@ class Sidebar extends React.Component {
                 <hr />
 
                 <div className="px-3">
-                    <SidebarNav sectionTitle="Calculus"  active={true} onNavLinkClicked={this.onNavLinkClicked}/>
-                    <SidebarNav sectionTitle="Differential Equations" onNavLinkClicked={this.onNavLinkClicked}/>
-                    <SidebarNav sectionTitle="Linear Algebra" onNavLinkClicked={this.onNavLinkClicked}/>
+                    {this.props.sections.map( section => this.getNavView(section))}
                 </div>
             </div>
         )
