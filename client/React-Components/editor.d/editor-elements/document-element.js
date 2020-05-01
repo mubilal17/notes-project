@@ -29,8 +29,12 @@ class Element extends React.Component{
 
     onInputChange(event)
     {
-        console.log('typing...');
         this.setState({content: event.target.value})
+        if (this.props.onContentChange)
+        {
+            const eventData = {elementId: this.props.elementId, content: this.state.content};
+            this.props.onContentChange(eventData);
+        }
     }
 
     dragElement(event)
@@ -45,17 +49,14 @@ class Element extends React.Component{
 
     toggleDragButtonVisibility(event)
     {
-        const elem = $('#elem' + this.props.elemId + ' span');
-        console.log(event.type);
+        const elem = $('#element' + this.props.elemId + ' span');
         if (event.type == 'mouseenter')
         {
-            console.log('entered');
             elem.removeClass('invisible')
                 .addClass('visible');
         }
         else
         {
-            console.log('leaved');
             elem.removeClass('visible')
                 .addClass('invisible');
         }
@@ -68,7 +69,7 @@ class Element extends React.Component{
         let style = this.style;
         let placeholder = "Content goes here...";
         return (
-            <div id={'elem' + this.props.elemId} className="input-group flex-nowrap"
+            <div id={'elem' + this.props.elementId} className="input-group flex-nowrap"
                  onMouseEnter={this.toggleDragButtonVisibility} onMouseLeave={this.toggleDragButtonVisibility}>
                 <span className="btn p-0 mt-3 align-bottom material-icons invisible" style={ {cursor: 'move'}}
                       draggable onDrag={this.dragElement} onDrop={this.dropElement}>
