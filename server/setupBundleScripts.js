@@ -21,7 +21,7 @@ function setupBrowserifyBundle(scriptPaths, bundleName)
         console.log('Updating ' + bundleName + '.');
         bundle.bundle()
             .on('error', err => console.log('Got Error Bundling ' + bundleName + ': ' + err.message))
-            .pipe(fs.createWriteStream('./client/public/scripts/' + bundleName));
+            .pipe(fs.createWriteStream('build/public/scripts/' + bundleName));
     };
 
     bundle.transform(babelify)
