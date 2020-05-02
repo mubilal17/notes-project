@@ -15,19 +15,10 @@ class Page {
 
     addElement(element)
     {
-        if (element == null)
-        {
-            const newElement = {type: 'p', id: this.idCounter++, content: ''};
-            this.contentElements.push(newElement);
-        }
-        else
-        {
-            const type = element.type;
-            const content = element.content;
-            const id = this.idCounter++;
-            const newElement = {type: 'p', id: id, content: content};
-            this.contentElements.push(newElement);
-        }
+        const newId = ++this.idCounter;
+        const content = element.content;
+        const newElement = {type: 'p', id: newId, content: content};
+        this.contentElements.push(newElement);
     }
 
 }

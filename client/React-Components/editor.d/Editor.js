@@ -12,27 +12,21 @@ class Editor extends React.Component {
         this.addNewElementToDocument = this.addNewElementToDocument.bind(this);
     }
 
-    updateContent(documentUpdateEvent)
+    updateContent(event)
     {
         if (this.props.onDocumentChange)
         {
-            documentUpdateEvent.documentId = this.state.document.id;
-            this.props.onDocumentChange(documentUpdateEvent);
+            const elementId = event.elementId;
+            const documentEventUpdate = {type: 'element', elementId: elementId, value: event.content};
+            this.props.onDocumentChange(documentEventUpdate);
         }
+
     }
 
     addNewElementToDocument(event)
     {
-
-        const documentUpdateEvent = {documentId: this.state.document.id, type: 'elementCreated', element: {type: 'p', content: ''}}
-        this.updateContent(documentUpdateEvent);
-        /*
-        this.setState( (state, props) => {
-            let documentElements = this.state.document.contentElements;
-            elements.push({type: 'p'});
-            return { documentElements: documentElements };
-        });
-         */
+        const documentUpdateEvent = {type: 'elementCreated', element: {type: 'p', content: ''}}
+        this.props.onDocumentChange(documentUpdateEvent);
     }
     render()
     {
@@ -40,8 +34,10 @@ class Editor extends React.Component {
         return (
             <div id="editor" className="container bg-white shadow w-100 vh-100 px-3 pt-2 border rounded">
                 <Title sectionTitle={document.section}> {document.title} </Title>
-                <Page documentId={document.id} documentChildren={document.contentElements} onDocumentChange={this.updateContent}/>
-                <AddNewElement onClick={this.addNewElementToDocument}>Add New Element</AddNewElement>
+                <Page onElementModified={this.updateContent}>
+                    {document}
+                </Page>
+                <AddNewElement onElementClicked={this.addNewElementToDocument}>Add New Element</AddNewElement>
             </div>
         )
     }

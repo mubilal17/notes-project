@@ -28,13 +28,13 @@ class App extends React.Component
     {
         if(documentUpdateEvent.type == 'element')
         {
-            let doc = volatileRepository.docs[documentUpdateEvent.documentId];
+            let doc = volatileRepository.getDocument(this.state.focusedDocument.id);
             doc.updateElement(documentUpdateEvent.elementId, documentUpdateEvent.value);
             this.setState({focusedDocument: doc});
         }
         if(documentUpdateEvent.type == 'elementCreated')
         {
-            let doc = volatileRepository.docs[documentUpdateEvent.documentId];
+            let doc = volatileRepository.getDocument(this.state.focusedDocument.id);
             doc.addElement(documentUpdateEvent.element);
             this.setState({focusedDocument: doc});
         }

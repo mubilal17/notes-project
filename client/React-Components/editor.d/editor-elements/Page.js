@@ -5,29 +5,24 @@ class Page extends React.Component {
     constructor(props)
     {
         super(props);
-        this.state = {documentChildren: this.props.documentChildren};
-        this.updateContent = this.updateContent.bind(this);
+        this.documentId = this.props.children.id;
     }
 
-    updateContent(event)
+    getElementView(element)
     {
-        const elementId = event.elementId;
-        this.state.documentChildren[elementId] = event.content;
-        if (this.props.onDocumentChange)
-        {
-            const documentEventUpdate = {type: 'element', elementId: elementId, value: event.content};
-            this.props.onDocumentChange(documentEventUpdate);
-        }
+        const key = `doc${this.documentId}elem${element.id}`;
+
+        return <Element key={key} elementId={element.id} type={element.type}
+                        content={element.content} onContentChange={this.props.onElementModified} />;
     }
 
     render()
     {
+        let document = this.props.children;
+        let elementMarkup = document.contentElements.map(element => this.getElementView(element));
         return (
             <div className="mt-5">
-                {this.props.documentChildren.map((element) => {
-                    return <Element key={'doc' + this.props.documentId + 'elem' + element.id} elementId={element.id} type={element.type}
-                                    content={element.content} onContentChange={this.updateContent} />;
-                })}
+                {elementMarkup}
             </div>
         )
     }
