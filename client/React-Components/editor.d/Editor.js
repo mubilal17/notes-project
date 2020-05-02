@@ -1,6 +1,6 @@
-const DocTitle = require('./editor-elements/Title.js');
-const DocumentPage = require('./editor-elements/Page.js');
-
+const Title = require('./editor-elements/Title.js');
+const Page = require('./editor-elements/Page.js');
+const AddNewElement = require('./editor-elements/AddElementButton');
 
 class Editor extends React.Component {
     constructor(props)
@@ -8,7 +8,6 @@ class Editor extends React.Component {
         super(props);
         let document = this.props.document;
         this.state = {document: this.props.document};
-
         this.updateContent = this.updateContent.bind(this);
         this.addNewElementToDocument = this.addNewElementToDocument.bind(this);
     }
@@ -39,17 +38,10 @@ class Editor extends React.Component {
     {
         let document = this.props.document;
         return (
-            <div id="editor" className="container-fluid px-0">
-                <div className="offset-1 col-11 bg-white shadow w-100 vh-100 px-3 pt-2 border rounded" >
-                    <div className="container">
-                        <DocTitle sectionTitle={document.section}> {document.title} </DocTitle>
-                        <DocumentPage documentId={document.id} documentChildren={document.contentElements} onDocumentChange={this.updateContent}/>
-                        <button className="btn btn-sm btn-outline-light text-muted border-0" href="#" onClick={this.addNewElementToDocument}>
-                            <span className="material-icons align-middle py-1">vertical_align_top</span>
-                            Add New Item
-                        </button>
-                    </div>
-                </div>
+            <div id="editor" className="container bg-white shadow w-100 vh-100 px-3 pt-2 border rounded">
+                <Title sectionTitle={document.section}> {document.title} </Title>
+                <Page documentId={document.id} documentChildren={document.contentElements} onDocumentChange={this.updateContent}/>
+                <AddNewElement onClick={this.addNewElementToDocument}>Add New Element</AddNewElement>
             </div>
         )
     }

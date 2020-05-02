@@ -49,10 +49,9 @@ class App extends React.Component
                         <Sidebar sections={this.state.sections} documentActiveId={this.state.focusedDocument.id}
                                  onPageLinkClicked={this.onPageLinkClicked}/>
                     </div>
-                    <div className="col-10 p-0 m-0 h-100 w-100">
-                        <div id="navbar-wrapper"></div>
+                    <div className="offset-col-1 col-10 p-0 m-0 h-100 w-100">
 
-                        <div id="editor-wrapper" className=" border-top-0 m-0 p-0 h-100 w-100">
+                        <div id="editor-wrapper" className="container-fluid border-top-0 m-0 p-0 h-100 w-100">
                             <Editor document={this.state.focusedDocument} onDocumentChange={this.updateDocument} />
                         </div>
 
