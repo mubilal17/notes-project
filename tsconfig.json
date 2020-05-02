@@ -2,8 +2,9 @@
   "include": [
     "server/**/*"
   ],
-  "compileOnSave": true,
   "compilerOptions": {
-    "noImplicitAny" : true
+    "outDir": "./build/server",
+    "allowJs": true,
+    "target": "es5"
   }
 }

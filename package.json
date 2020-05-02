@@ -1,7 +1,7 @@
 {
   "name": "notes-project",
   "scripts": {
-    "prestart": "tsc --allowJs --outDir build/server",
+    "prestart": "tsc",
     "start": "node build/server/main.js"
   },
   "babel": {
