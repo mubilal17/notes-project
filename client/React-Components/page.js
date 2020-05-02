@@ -28,8 +28,14 @@ class Page extends React.Component
     {
         if(documentUpdateEvent.type == 'element')
         {
-            let doc = volatileRepository.docs[documentUpdateEvent.elementId];
+            let doc = volatileRepository.docs[documentUpdateEvent.documentId];
             doc.updateElement(documentUpdateEvent.elementId, documentUpdateEvent.value);
+            this.setState({focusedDocument: doc});
+        }
+        if(documentUpdateEvent.type == 'elementCreated')
+        {
+            let doc = volatileRepository.docs[documentUpdateEvent.documentId];
+            doc.addElement(documentUpdateEvent.element);
             this.setState({focusedDocument: doc});
         }
     }

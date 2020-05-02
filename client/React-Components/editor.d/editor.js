@@ -24,11 +24,16 @@ class Editor extends React.Component {
 
     addNewElementToDocument(event)
     {
+
+        const documentUpdateEvent = {documentId: this.state.document.id, type: 'elementCreated', element: {type: 'p', content: ''}}
+        this.updateContent(documentUpdateEvent);
+        /*
         this.setState( (state, props) => {
             let documentElements = this.state.document.contentElements;
             elements.push({type: 'p'});
             return { documentElements: documentElements };
         });
+         */
     }
     render()
     {
