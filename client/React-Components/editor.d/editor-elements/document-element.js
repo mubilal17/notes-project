@@ -29,13 +29,9 @@ class Element extends React.Component{
 
     onInputChange(event)
     {
-        console.log(this);
-
-        const elem = $('#element' + this.props.elemId + ' input');
-        elem.val(event.target.value);
         if (this.props.onContentChange)
         {
-            const eventData = {elementId: this.props.elementId, content: this.state.content};
+            const eventData = {elementId: this.props.elementId, content: event.target.value};
             this.props.onContentChange(eventData);
         }
     }

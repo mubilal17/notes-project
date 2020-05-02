@@ -21,7 +21,6 @@ class Page extends React.Component
     onNavLinkClicked(event)
     {
         const documentClickedId = event.documentClicked.id;
-        console.log(volatileRepository.docs[documentClickedId]);
         this.setState({focusedDocument: volatileRepository.docs[documentClickedId]});
     }
 

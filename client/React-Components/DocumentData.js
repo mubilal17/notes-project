@@ -9,8 +9,7 @@ class DocumentData {
 
     updateElement(elementId, content)
     {
-        let index = this.contentElements.findIndex(element => element.id == elementId);
-        this.contentElements[index] = content;
+        this.contentElements[elementId] = {type: 'p', id: elementId, content: content}
     }
 
 }
