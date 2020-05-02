@@ -5,7 +5,7 @@ class Page {
         this.section = section;
         this.title = title;
         this.contentElements = contentElements  != null ? contentElements : [];
-        this.idCounter = 5; // arbitrarily chosen, for simple element id usage.
+        this.idCounter = 2; // arbitrarily chosen, for simple element id usage.
     }
 
     updateElement(elementId, content)
@@ -15,9 +15,8 @@ class Page {
 
     addElement(element)
     {
-        const newId = ++this.idCounter;
-        const content = element.content;
-        const newElement = {type: 'p', id: newId, content: content};
+        const newId = this.idCounter++;
+        const newElement = {type: 'p', id: newId, content: ''};
         this.contentElements.push(newElement);
     }
 

@@ -6,7 +6,6 @@ class Editor extends React.Component {
     constructor(props)
     {
         super(props);
-        let document = this.props.document;
         this.state = {document: this.props.document};
         this.updateContent = this.updateContent.bind(this);
         this.addNewElementToDocument = this.addNewElementToDocument.bind(this);
