@@ -1,5 +1,5 @@
 
-const SidebarNav = require('./sidebar-nav');
+const SectionNav = require('./SectionNav');
 
 let workspaceTitle = "Mathematics";
 
@@ -11,7 +11,7 @@ class Sidebar extends React.Component {
     constructor(props)
     {
         super(props);
-        this.onNavLinkClicked = this.onNavLinkClicked.bind(this);
+        this.onPageLinkClicked = this.onPageLinkClicked.bind(this);
     }
 
     componentDidMount()
@@ -21,17 +21,17 @@ class Sidebar extends React.Component {
         dashboardBtn.hover(() => dashboardBtn.addClass(hoverClasses), () => dashboardBtn.removeClass(hoverClasses));
     }
 
-    onNavLinkClicked(event)
+    onPageLinkClicked(event)
     {
-        if (this.props.onNavLinkClicked)
-            this.props.onNavLinkClicked(event);
+        if (this.props.onPageLinkClicked)
+            this.props.onPageLinkClicked(event);
     }
 
-    getNavView(section)
+    getSectionNavs(section)
     {
         const sectionName = section.sectionName;
-        return <SidebarNav key={sectionName}
-                           sectionName={sectionName} documents={section.documents} onNavLinkClicked={this.onNavLinkClicked}
+        return <SectionNav key={sectionName}
+                           sectionName={sectionName} documents={section.documents} onPageLinkClicked={this.onPageLinkClicked}
                            documentActiveId={this.props.documentActiveId}/>
     }
 
@@ -53,7 +53,7 @@ class Sidebar extends React.Component {
                 <hr />
 
                 <div className="px-3">
-                    {this.props.sections.map( section => this.getNavView(section))}
+                    {this.props.sections.map( section => this.getSectionNavs(section))}
                 </div>
             </div>
         )

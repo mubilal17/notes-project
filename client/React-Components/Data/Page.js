@@ -1,4 +1,4 @@
-class DocumentData {
+class Page {
     constructor(id, section, title, contentElements)
     {
         this.id = id != null ? id : 0;
@@ -32,4 +32,4 @@ class DocumentData {
 
 }
 
-module.exports = DocumentData;
+module.exports = Page;

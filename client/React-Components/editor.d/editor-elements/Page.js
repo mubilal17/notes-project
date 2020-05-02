@@ -1,7 +1,7 @@
-const Element = require('./document-element');
+const Element = require('./Element');
 
 
-class DocumentPage extends React.Component {
+class Page extends React.Component {
     constructor(props)
     {
         super(props);
@@ -33,4 +33,4 @@ class DocumentPage extends React.Component {
     }
 }
 
-module.exports = DocumentPage;
+module.exports = Page;

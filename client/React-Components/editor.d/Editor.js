@@ -1,5 +1,5 @@
-const DocTitle = require('./editor-elements/title.js');
-const DocumentPage = require('./editor-elements/document-page.js');
+const DocTitle = require('./editor-elements/Title.js');
+const DocumentPage = require('./editor-elements/Page.js');
 
 
 class Editor extends React.Component {

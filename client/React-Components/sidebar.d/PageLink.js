@@ -1,4 +1,4 @@
-class SidebarLink extends React.Component {
+class PageLink extends React.Component {
     constructor(props)
     {
         super(props);
@@ -11,10 +11,10 @@ class SidebarLink extends React.Component {
     onClick()
     {
         let document = this.props.document;
-        if(this.props.onNavLinkClicked)
+        if(this.props.onPageLinkClicked)
         {
             const event = {documentClicked: {id: document.id, title: document.title, section: document.section}}
-            this.props.onNavLinkClicked(event);
+            this.props.onPageLinkClicked(event);
         }
     }
 
@@ -30,4 +30,4 @@ class SidebarLink extends React.Component {
     }
 }
 
-module.exports = SidebarLink;
+module.exports = PageLink;

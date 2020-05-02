@@ -1,6 +1,6 @@
-const SidebarLink = require('./sidebar-link.js');
+const SidebarLink = require('./PageLink.js');
 
-class SidebarNav extends React.Component {
+class SectionNav extends React.Component {
     constructor(props)
     {
         super(props);
@@ -9,14 +9,14 @@ class SidebarNav extends React.Component {
                 {this.props.sectionName}
                 { this.props.active ? <span className="material-icons text-success float-right" style={{fontSize: '1em'}}>sync_alt</span> : "" }
             </a>
-        this.onNavLinkClicked = this.onNavLinkClicked.bind(this);
+        this.onPageLinkClicked = this.onPageLinkClicked.bind(this);
     }
 
-    onNavLinkClicked(event)
+    onPageLinkClicked(event)
     {
-        if (this.props.onNavLinkClicked)
+        if (this.props.onPageLinkClicked)
         {
-            this.props.onNavLinkClicked(event);
+            this.props.onPageLinkClicked(event);
         }
     }
 
@@ -24,7 +24,7 @@ class SidebarNav extends React.Component {
     {
         return this.props.documents.map(document => {
             return <SidebarLink key={document.title}
-                                onNavLinkClicked={this.onNavLinkClicked} document={document}
+                                onPageLinkClicked={this.onPageLinkClicked} document={document}
                                 documentActiveId={this.props.documentActiveId }/>
         });
     }
@@ -42,6 +42,4 @@ class SidebarNav extends React.Component {
     }
 }
 
-//<SidebarLink onNavLinkClicked={this.onNavLinkClicked} documentTitle={'Terminology'} active={this.props.active ? true : false} />
-
-module.exports = SidebarNav;
+module.exports = SectionNav;

@@ -5,7 +5,7 @@ const browserify = require('browserify');
 
 
 
-const entryPointReactScripts = './client/React-Components/page.js';
+const entryPointReactScripts = './client/React-Components/App.js';
 
 
 

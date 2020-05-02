@@ -1,6 +1,6 @@
 
 
-class ETitle extends React.Component {
+class Title extends React.Component {
     constructor(props)
     {
         super(props);
@@ -18,4 +18,4 @@ class ETitle extends React.Component {
     }
 }
 
-module.exports = ETitle;
+module.exports = Title;

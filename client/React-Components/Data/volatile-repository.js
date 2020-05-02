@@ -1,4 +1,4 @@
-const DocumentData = require('./DocumentData.js');
+const Page = require('./Page.js');
 
 class VolatileRepository
 {
@@ -17,7 +17,7 @@ class VolatileRepository
                 const p1 = {type:'p', id: 0, content: "Hello from " + this.titles[j]};
                 const p2 = {type:'p', id: 1, content: "This is line " + 2 + " of " + this.titles[j]};
                 let contentElements = [p1, p2];
-                let doc = new DocumentData(idCounter, this.sections[i], this.titles[j], contentElements);
+                let doc = new Page(idCounter, this.sections[i], this.titles[j], contentElements);
                 docs.push(doc);
                 idCounter++;
             }
