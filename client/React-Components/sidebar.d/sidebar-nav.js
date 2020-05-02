@@ -6,7 +6,7 @@ class SidebarNav extends React.Component {
         super(props);
         this.title =
             <a className={"lead text-decoration-none " + (this.props.active ? "text-dark" : "text-black-50")} href="#">
-                {this.props.sectionTitle}
+                {this.props.sectionName}
                 { this.props.active ? <span className="material-icons text-success float-right" style={{fontSize: '1em'}}>sync_alt</span> : "" }
             </a>
         this.onNavLinkClicked = this.onNavLinkClicked.bind(this);
@@ -16,17 +16,16 @@ class SidebarNav extends React.Component {
     {
         if (this.props.onNavLinkClicked)
         {
-            event.documentSection = this.props.sectionTitle;
             this.props.onNavLinkClicked(event);
         }
     }
 
     getSidebarLinks()
     {
-        return this.props.documentTitles.map(documentTitle => {
-            return <SidebarLink key={documentTitle}
-                                onNavLinkClicked={this.onNavLinkClicked} documentTitle={documentTitle}
-                                active={this.props.activeSection && this.props.activeDocument == documentTitle ? true : false}/>
+        return this.props.documents.map(document => {
+            return <SidebarLink key={document.title}
+                                onNavLinkClicked={this.onNavLinkClicked} document={document}
+                                documentActiveId={this.props.documentActiveId }/>
         });
     }
 

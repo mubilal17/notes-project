@@ -29,7 +29,10 @@ class Element extends React.Component{
 
     onInputChange(event)
     {
-        this.setState({content: event.target.value})
+        console.log(this);
+
+        const elem = $('#element' + this.props.elemId + ' input');
+        elem.val(event.target.value);
         if (this.props.onContentChange)
         {
             const eventData = {elementId: this.props.elementId, content: this.state.content};
@@ -69,13 +72,13 @@ class Element extends React.Component{
         let style = this.style;
         let placeholder = "Content goes here...";
         return (
-            <div id={'elem' + this.props.elementId} className="input-group flex-nowrap"
+            <div  id={'elem' + this.props.elementId} className="input-group flex-nowrap"
                  onMouseEnter={this.toggleDragButtonVisibility} onMouseLeave={this.toggleDragButtonVisibility}>
                 <span className="btn p-0 mt-3 align-bottom material-icons invisible" style={ {cursor: 'move'}}
                       draggable onDrag={this.dragElement} onDrop={this.dropElement}>
                     drag_handle
                 </span>
-                <input type={type} value={this.state.content} placeholder={placeholder}
+                <input type={type} value={this.props.content} placeholder={placeholder}
                        onChange={this.onInputChange} className={className} style={style} />
             </div>
         )

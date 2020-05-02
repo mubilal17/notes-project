@@ -10,19 +10,21 @@ class SidebarLink extends React.Component {
 
     onClick()
     {
+        let document = this.props.document;
         if(this.props.onNavLinkClicked)
         {
-            const event = {documentClicked: this.props.documentTitle}
+            const event = {documentClicked: {id: document.id, title: document.title, section: document.section}}
             this.props.onNavLinkClicked(event);
         }
     }
 
     render()
     {
+        let document = this.props.document;
         return (
             <a onClick={this.onClick} href="#"
-               style={this.props.active ? this.activeStyle : {}} className={'nav-item nav-link rounded text-dark'}>
-                {this.props.documentTitle}
+               style={this.props.documentActiveId == document.id ? this.activeStyle : {}} className={'nav-item nav-link rounded text-dark'}>
+                {document.title}
             </a>
         )
     }

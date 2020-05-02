@@ -27,12 +27,12 @@ class Sidebar extends React.Component {
             this.props.onNavLinkClicked(event);
     }
 
-    getNavView(sectionName)
+    getNavView(section)
     {
-        const documentTitles = this.props.documentTitles;
+        const sectionName = section.sectionName;
         return <SidebarNav key={sectionName}
-                            sectionTitle={sectionName} documentTitles={documentTitles} onNavLinkClicked={this.onNavLinkClicked}
-                           activeSection={this.props.activeSection == sectionName ? true : false} activeDocument={this.props.documentActive}/>
+                           sectionName={sectionName} documents={section.documents} onNavLinkClicked={this.onNavLinkClicked}
+                           documentActiveId={this.props.documentActiveId}/>
     }
 
     render()

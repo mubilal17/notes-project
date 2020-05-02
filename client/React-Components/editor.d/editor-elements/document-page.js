@@ -15,25 +15,19 @@ class DocumentPage extends React.Component {
         this.state.documentChildren[elementId] = event.content;
         if (this.props.onDocumentChange)
         {
-            const documentEventUpdate = {type: 'element', elementId: elementId, value: event.value};
+            const documentEventUpdate = {type: 'element', elementId: elementId, value: event.content};
             this.props.onDocumentChange(documentEventUpdate);
         }
     }
 
     render()
     {
-        let children = this.props.documentChildren;
-        let elements = null;
-        if (children != null && children.length > 0)
-        {
-            elements = children.map((element, index) => {
-                return <Element key={'docElem' + index} elementId={index} type={element.type}
-                                content={element.content} onContentChange={this.updateContent} />;
-            });
-        }
         return (
             <div className="mt-5">
-                {elements}
+                {this.props.documentChildren.map((element) => {
+                    return <Element key={'doc' + this.props.documentId + 'elem' + element.id} elementId={element.id} type={element.type}
+                                    content={element.content} onContentChange={this.updateContent} />;
+                })}
             </div>
         )
     }

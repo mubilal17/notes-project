@@ -1,22 +1,49 @@
 const DocumentData = require('./DocumentData.js');
 
-
-const volatileRepository = function ()
+class VolatileRepository
 {
-    const docIds = [1, 2, 3];
-    const titles = ['Doc One', 'Doc Two', 'Doc Three'];
-    const docs = [];
-    for (let i = 0; i < 3; i++)
+    constructor()
     {
-        const p1 = "Hello from " + titles[i];
-        const p2 = "This is line " + 2 + " of " + titles[i];
-        contentElements = [p1, p2];
-        const doc = new DocumentData(docIds[i], titles[i], contentElements);
-        docs.push(doc);
+        this.docIds = [0, 1, 2];
+        this.titles = ['Overview', 'Terminology', 'Exercises'];
+        this.sections = ['Calculus', 'Differential Equations', 'Linear Algebra'];
+        const docs = [];
+        let idCounter = 0;
+        for (let i = 0; i < 3; i++)
+        {
+
+            for (let j = 0; j < this.sections.length; j++)
+            {
+                const p1 = {type:'p', id: 0, content: "Hello from " + this.titles[j]};
+                const p2 = {type:'p', id: 1, content: "This is line " + 2 + " of " + this.titles[j]};
+                let contentElements = [p1, p2];
+                let doc = new DocumentData(idCounter, this.sections[i], this.titles[j], contentElements);
+                docs.push(doc);
+                idCounter++;
+            }
+        }
+
+        this.docs = docs;
     }
 
-    return docs;
+    getSections()
+    {
+        return this.sections.map(section => {
+            const sectionDocuments = this.docs.filter(doc => doc.section == section);
+            return {sectionName: section, documents: sectionDocuments}
+        });
+    }
+
+    getDocument(docId)
+    {
+        return this.docs[docId];
+    }
+
+    updateDocument(docId, document)
+    {
+        this.docs[docId] = document;
+    }
 }
 
 
-module.exports = volatileRepository();
+module.exports = new VolatileRepository();

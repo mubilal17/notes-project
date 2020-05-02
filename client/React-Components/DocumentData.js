@@ -1,15 +1,15 @@
 class DocumentData {
-    constructor(documentId, parentWorkspace, title, contentElements)
+    constructor(id, section, title, contentElements)
     {
-        this.documentId = documentId != null ? documentId : 0;
-        this.workspace = parentWorkspace;
+        this.id = id != null ? id : 0;
+        this.section = section;
         this.title = title;
         this.contentElements = contentElements  != null ? contentElements : [];
     }
 
     updateElement(elementId, content)
     {
-        let index = this.contentElements.findIndex(element => element.elementId == elementId);
+        let index = this.contentElements.findIndex(element => element.id == elementId);
         this.contentElements[index] = content;
     }
 
