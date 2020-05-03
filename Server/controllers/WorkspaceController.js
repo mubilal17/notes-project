@@ -6,7 +6,7 @@ let repository = new Repository();
 
 WorkspaceController.get('/', function(req, res) {
     let sections = repository.getSections();
-    res.send(sections);
+    res.json(sections);
 });
 
 export {WorkspaceController}

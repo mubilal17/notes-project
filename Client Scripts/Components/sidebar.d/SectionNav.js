@@ -1,13 +1,13 @@
-const SidebarLink = require('./PageLink.js');
+const PageLink = require('./PageLink.js');
 
 class SectionNav extends React.Component {
     constructor(props)
     {
         super(props);
         this.title =
-            <a className={"lead text-decoration-none " + (this.props.active ? "text-dark" : "text-black-50")} href="#">
-                {this.props.sectionName}
-                { this.props.active ? <span className="material-icons text-success float-right" style={{fontSize: '1em'}}>sync_alt</span> : "" }
+            <a className={"lead text-decoration-none " + (this.props.activeSection ? "text-dark" : "text-black-50")} href="#">
+                {this.props.sectionTitle}
+                { this.props.activeSection ? <span className="material-icons text-success float-right" style={{fontSize: '1em'}}>sync_alt</span> : "" }
             </a>
         this.onPageLinkClicked = this.onPageLinkClicked.bind(this);
     }
@@ -22,10 +22,13 @@ class SectionNav extends React.Component {
 
     getSidebarLinks()
     {
-        return this.props.documents.map(document => {
-            return <SidebarLink key={document.title}
-                                onPageLinkClicked={this.onPageLinkClicked} document={document}
-                                documentActiveId={this.props.documentActiveId }/>
+        return this.props.pages.map(page => {
+            let active = false;
+            if (this.props.activeSection && page.id == this.props.activePageId)
+                active = true;
+            return <PageLink key={page.title}
+                                onPageLinkClicked={this.onPageLinkClicked} sectionId={this.props.sectionId} page={page}
+                                active={active}/>
         });
     }
 

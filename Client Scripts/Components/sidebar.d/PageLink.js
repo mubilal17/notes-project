@@ -10,21 +10,21 @@ class PageLink extends React.Component {
 
     onClick()
     {
-        let document = this.props.document;
+        let page = this.props.page;
         if(this.props.onPageLinkClicked)
         {
-            const event = {documentClicked: {id: document.id, title: document.title, section: document.section}}
+            const event = {sectionClickedId: this.props.sectionId, pageClicked: {id: page.id, title: page.title}}
             this.props.onPageLinkClicked(event);
         }
     }
 
     render()
     {
-        let document = this.props.document;
+        let page = this.props.page;
         return (
             <a onClick={this.onClick} href="#"
-               style={this.props.documentActiveId == document.id ? this.activeStyle : {}} className={'nav-item nav-link rounded text-dark'}>
-                {document.title}
+               style={this.props.active ? this.activeStyle : {}} className={'nav-item nav-link rounded text-dark'}>
+                {page.title}
             </a>
         )
     }

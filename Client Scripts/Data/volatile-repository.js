@@ -4,10 +4,9 @@ class VolatileRepository
 {
     constructor()
     {
-        this.docIds = [0, 1, 2];
         this.titles = ['Overview', 'Terminology', 'Exercises'];
         this.sections = ['Calculus', 'Differential Equations', 'Linear Algebra'];
-        const docs = [];
+        const pages = [];
         let idCounter = 0;
         for (let i = 0; i < 3; i++)
         {
@@ -18,30 +17,30 @@ class VolatileRepository
                 const p2 = {type:'p', id: 1, content: "This is line " + 2 + " of " + this.titles[j]};
                 let contentElements = [p1, p2];
                 let doc = new Page(idCounter, this.sections[i], this.titles[j], contentElements);
-                docs.push(doc);
+                pages.push(doc);
                 idCounter++;
             }
         }
 
-        this.docs = docs;
+        this.pages = pages;
     }
 
     getSections()
     {
         return this.sections.map(section => {
-            const sectionDocuments = this.docs.filter(doc => doc.section == section);
-            return {sectionName: section, documents: sectionDocuments}
+            const sectionPages = this.docs.filter(page => page.section == section);
+            return {title: section, pages: sectionPages}
         });
     }
 
-    getDocument(docId)
+    getPage(pageId)
     {
-        return this.docs[docId];
+        return this.pages[pageId];
     }
 
-    updateDocument(docId, document)
+    updatePage(pageId, page)
     {
-        this.docs[docId] = document;
+        this.pages[docId] = page;
     }
 }
 

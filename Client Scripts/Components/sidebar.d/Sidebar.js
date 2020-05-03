@@ -24,15 +24,22 @@ class Sidebar extends React.Component {
     onPageLinkClicked(event)
     {
         if (this.props.onPageLinkClicked)
+        {
+            let sectionClicked = this.props.sections.find(section => section.id == event.sectionClickedId);
+            event.sectionClicked = sectionClicked;
             this.props.onPageLinkClicked(event);
+        }
     }
 
     getSectionNavs(section)
     {
-        const sectionName = section.sectionName;
-        return <SectionNav key={sectionName}
-                           sectionName={sectionName} documents={section.documents} onPageLinkClicked={this.onPageLinkClicked}
-                           documentActiveId={this.props.documentActiveId}/>
+        const sectionTitle = section.title;
+        let activeSection = false;
+        if (section.id == this.props.activeSectionId)
+            activeSection = true;
+        return <SectionNav key={sectionTitle} sectionTitle={sectionTitle} sectionId={section.id}
+                           activeSection={activeSection} pages={section.pages} onPageLinkClicked={this.onPageLinkClicked}
+                           activePageId={this.props.activePageId}/>
     }
 
     render()

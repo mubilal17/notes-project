@@ -6,37 +6,36 @@ class Editor extends React.Component {
     constructor(props)
     {
         super(props);
-        this.state = {document: this.props.document};
+        this.state = {document: this.props.page};
         this.updateContent = this.updateContent.bind(this);
-        this.addNewElementToDocument = this.addNewElementToDocument.bind(this);
+        this.addNewElementToPage = this.addNewElementToPage.bind(this);
     }
 
     updateContent(event)
     {
-        if (this.props.onDocumentChange)
+        if (this.props.onPageChange)
         {
             const elementId = event.elementId;
-            const documentEventUpdate = {type: 'element', elementId: elementId, value: event.content};
-            this.props.onDocumentChange(documentEventUpdate);
+            const pageUpdateEvent = {type: 'element', elementId: elementId, value: event.content};
+            this.props.onPageChange(pageUpdateEvent);
         }
-
     }
 
-    addNewElementToDocument(event)
+    addNewElementToPage(event)
     {
-        const documentUpdateEvent = {type: 'elementCreated', element: {type: 'p', content: ''}}
-        this.props.onDocumentChange(documentUpdateEvent);
+        const pageUpdateEvent = {type: 'elementCreated', element: {type: 'p', content: ''}}
+        this.props.onPageChange(pageUpdateEvent);
     }
     render()
     {
-        let document = this.props.document;
+        let page = this.props.page;
         return (
             <div id="editor" className="container bg-white shadow w-100 vh-100 px-3 pt-2 border rounded">
-                <Title sectionTitle={document.section}> {document.title} </Title>
+                <Title sectionTitle={this.props.sectionTitle}> {page.title} </Title>
                 <Page onElementModified={this.updateContent}>
-                    {document}
+                    {page}
                 </Page>
-                <AddNewElement onElementClicked={this.addNewElementToDocument}>Add New Element</AddNewElement>
+                <AddNewElement onElementClicked={this.addNewElementToPage}>Add New Element</AddNewElement>
             </div>
         )
     }

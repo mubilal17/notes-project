@@ -10,6 +10,7 @@ class PageElement
         this.type = type ?? 'p';
         this.content = content ?? '';
     }
+
 }
 
 export {PageElement};

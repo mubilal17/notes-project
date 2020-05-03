@@ -1,23 +1,27 @@
 class Page {
-    constructor(id, section, title, contentElements)
+    constructor(id, title, elements)
     {
         this.id = id != null ? id : 0;
-        this.section = section;
         this.title = title;
-        this.contentElements = contentElements  != null ? contentElements : [];
-        this.idCounter = 2; // arbitrarily chosen, for simple element id usage.
+        this.elements = elements  != null ? elements : [];
+        let maxId = 0;
+        this.elements.forEach(element => {
+            if (element.id > maxId)
+                maxId = element.id;
+        });
+        this.idCounter = maxId + 1; // arbitrarily chosen, for simple element id usage.
     }
 
     updateElement(elementId, content)
     {
-        this.contentElements[elementId] = {type: 'p', id: elementId, content: content}
+        this.elements.find(element => element.id == elementId).content = content;
     }
 
     addElement(element)
     {
         const newId = this.idCounter++;
         const newElement = {type: 'p', id: newId, content: ''};
-        this.contentElements.push(newElement);
+        this.elements.push(newElement);
     }
 
 }

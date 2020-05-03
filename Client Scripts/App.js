@@ -1,59 +1,67 @@
 const Editor = require('./Components/editor.d/Editor.js');
 const Sidebar = require('./Components/sidebar.d/Sidebar');
 const WorkspaceAPI = require('./Data/WorkspaceAPI');
-const volatileRepository = require('./Data/volatile-repository');
-let workspaceAPI = new WorkspaceAPI();
-workspaceAPI.fetch();
+
+const repository = new WorkspaceAPI();
+
 class App extends React.Component
 {
     constructor(props)
     {
         super(props);
-        const focusedDocument = volatileRepository.docs[0];
-        const sections = volatileRepository.getSections();
-
-        this.state = {focusedDocument: focusedDocument, sections: sections}
-
+        /*
+        const focusedPage = repository.docs[0];
+        const sections = repository.getSections();
+        this.state = {focusedPage: focusedPage, sections: sections}
+         */
+        this.state = {focusedSection: null, focusedPage: null, sections: null, loaded: false}
+        repository.getSections().then( sections => {
+            this.setState({focusedSection: sections[0], focusedPage: sections[0].pages[0], sections: sections, loaded: true});
+        });
         this.onPageLinkClicked = this.onPageLinkClicked.bind(this);
-        this.updateDocument = this.updateDocument.bind(this);
+        this.updatePage = this.updatePage.bind(this);
 
     }
 
     onPageLinkClicked(event)
     {
-        const documentClickedId = event.documentClicked.id;
-        this.setState({focusedDocument: volatileRepository.docs[documentClickedId]});
+        const pageClickedId = event.pageClicked.id;
+        const sectionClicked = event.sectionClicked;
+        this.setState({focusedSection: sectionClicked, focusedPage: repository.getPage(sectionClicked.id, pageClickedId)});
     }
 
-    updateDocument(documentUpdateEvent)
+    updatePage(pageUpdateEvent)
     {
-        if(documentUpdateEvent.type == 'element')
+        if(pageUpdateEvent.type == 'element')
         {
-            let doc = volatileRepository.getDocument(this.state.focusedDocument.id);
-            doc.updateElement(documentUpdateEvent.elementId, documentUpdateEvent.value);
-            this.setState({focusedDocument: doc});
+            let page = repository.getPage(this.state.focusedSection.id, this.state.focusedPage.id);
+            page.updateElement(pageUpdateEvent.elementId, pageUpdateEvent.value);
+            this.setState({focusedPage: page});
         }
-        if(documentUpdateEvent.type == 'elementCreated')
+        if(pageUpdateEvent.type == 'elementCreated')
         {
-            let doc = volatileRepository.getDocument(this.state.focusedDocument.id);
-            doc.addElement(documentUpdateEvent.element);
-            this.setState({focusedDocument: doc});
+            let page = repository.getPage(this.state.focusedSection.id, this.state.focusedPage.id);
+            page.addElement(pageUpdateEvent.element);
+            this.setState({focusedPage: page});
         }
     }
 
     render()
     {
+        if (this.state.loaded == false)
+            return <div></div>;
         return (
             <div id="main" className="container-fluid p-0 m-0 h-100 w-100">
                 <div className="row p-0 m-0 h-100 w-100">
                     <div id="sidebar-wrapper" className="col-2 p-0 m-0 h-100 w-100">
-                        <Sidebar sections={this.state.sections} documentActiveId={this.state.focusedDocument.id}
+                        <Sidebar sections={this.state.sections}
+                                 activeSectionId={this.state.focusedSection.id} activePageId={this.state.focusedPage.id}
                                  onPageLinkClicked={this.onPageLinkClicked}/>
                     </div>
                     <div className="offset-col-1 col-10 p-0 m-0 h-100 w-100">
 
                         <div id="editor-wrapper" className="container-fluid border-top-0 m-0 p-0 h-100 w-100">
-                            <Editor document={this.state.focusedDocument} onDocumentChange={this.updateDocument} />
+                            <Editor sectionTitle={this.state.focusedSection.title} page={this.state.focusedPage} onPageChange={this.updatePage} />
                         </div>
 
                     </div>

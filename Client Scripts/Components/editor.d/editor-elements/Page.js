@@ -5,12 +5,12 @@ class Page extends React.Component {
     constructor(props)
     {
         super(props);
-        this.documentId = this.props.children.id;
+        this.pageId = this.props.children.id;
     }
 
     getElementView(element)
     {
-        const key = `doc${this.documentId}elem${element.id}`;
+        const key = `doc${this.pageId}elem${element.id}`;
 
         return <Element id={key} key={key} elementId={element.id} type={element.type}
                         content={element.content} onContentChange={this.props.onElementModified} />;
@@ -18,8 +18,8 @@ class Page extends React.Component {
 
     render()
     {
-        let document = this.props.children;
-        let elementMarkup = document.contentElements.map(element => this.getElementView(element));
+        let page = this.props.children;
+        let elementMarkup = page.elements.map(element => this.getElementView(element));
         return (
             <div className="mt-5">
                 {elementMarkup}
