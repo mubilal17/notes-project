@@ -49,19 +49,14 @@ class Element extends React.Component{
     onElementHover(event)
     {
         const dragElem = $('#' + this.hoverSpanId);
-        const editElem = $('#' + this.editElementId);
         if (event.type == 'mouseenter')
         {
             dragElem.removeClass('invisible')
-                .addClass('visible');
-            editElem.removeClass('invisible')
                 .addClass('visible');
         }
         else
         {
             dragElem.removeClass('visible')
-                .addClass('invisible');
-            editElem.removeClass('visible')
                 .addClass('invisible');
         }
     }
@@ -79,7 +74,7 @@ class Element extends React.Component{
                       draggable onDrag={this.dragElement} onDrop={this.dropElement}>
                     drag_handle
                 </span>
-                <EditElementButton className="invisible" id={this.editElementId}/>
+                <EditElementButton id={this.editElementId}/>
 
                 <input type={type} value={this.props.content} placeholder={placeholder}
                        onChange={this.onInputChange} className={className} style={style} />

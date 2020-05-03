@@ -2,14 +2,26 @@ class EditElementButton extends React.Component {
     constructor(props)
     {
         super(props);
-        this.onEditElementClicked = this.onEditElementClicked.bind(this);
+        this.state = {active: false};
     }
 
     componentDidMount()
     {
-        console.log();
+        let element = $('#' + this.props.id);
+        console.log(element);
+        element.parent().on('mouseenter', () => {
+            element.removeClass('invisible').addClass('visible');
+        });
+
+        element.parent().on('mouseleave',  () => {
+            if (!this.state.active)
+                element.removeClass('visible').addClass('invisible');
+        });
+        element.on('focus', () => this.setState({active: true}));
+        element.on('blur', () => this.setState({active: false}));
+
         $('#' + this.props.id).popover({
-            title: 'title',
+            title: 'Edit Element',
             content: 'testing body does it work',
             container: 'body',
             placement: 'top',
@@ -17,15 +29,11 @@ class EditElementButton extends React.Component {
         });
     }
 
-    onEditElementClicked(event)
-    {
-    }
 
     render()
     {
         return (
-            <button id={this.props.id} type="button" className="btn invisible p-0 mt-3 align-bottom"
-                  onClick={this.onEditElementClicked}  >
+            <button id={this.props.id} type="button" className="btn invisible p-0 mt-3 align-bottom" >
                     <span className="material-icons">edit</span>
             </button>
         )
