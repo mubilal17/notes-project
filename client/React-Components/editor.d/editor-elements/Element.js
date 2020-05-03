@@ -1,4 +1,5 @@
 const EditElementButton = require('./EditElementButton');
+const DragButton = require('./DragButton');
 
 const pStyle = {
     fontSize: '1.25em'
@@ -14,7 +15,7 @@ class Element extends React.Component{
     constructor(props)
     {
         super(props);
-        this.hoverSpanId = this.props.id + 'hoverdragspan'
+        this.dragButtonId = this.props.id + 'dragButton'
         this.editElementId = this.props.id + 'editElement';
         let style = {};
         Object.assign(style, pStyle);
@@ -23,7 +24,6 @@ class Element extends React.Component{
             Object.assign(style, hStyle);
         this.style = style;
         this.onInputChange = this.onInputChange.bind(this);
-        this.onElementHover = this.onElementHover.bind(this);
     }
 
     onInputChange(event)
@@ -36,31 +36,6 @@ class Element extends React.Component{
         }
     }
 
-    dragElement(event)
-    {
-        console.log('dragging');
-    }
-
-    dropElement(event)
-    {
-        console.log('dropping');
-    }
-
-    onElementHover(event)
-    {
-        const dragElem = $('#' + this.hoverSpanId);
-        if (event.type == 'mouseenter')
-        {
-            dragElem.removeClass('invisible')
-                .addClass('visible');
-        }
-        else
-        {
-            dragElem.removeClass('visible')
-                .addClass('invisible');
-        }
-    }
-
     render()
     {
         let type = "text";
@@ -70,12 +45,10 @@ class Element extends React.Component{
         return (
             <div className="input-group flex-nowrap"
                  onMouseEnter={this.onElementHover} onMouseLeave={this.onElementHover}>
-                <span id={this.hoverSpanId} className="btn  btn-outline-light p-0 mt-3 align-bottom material-icons invisible" style={ {cursor: 'move'}}
-                      draggable onDrag={this.dragElement} onDrop={this.dropElement}>
-                    drag_handle
-                </span>
-                <EditElementButton id={this.editElementId}/>
-
+                <div>
+                    <DragButton id={this.dragButtonId} />
+                    <EditElementButton id={this.editElementId} />
+                </div>
                 <input type={type} value={this.props.content} placeholder={placeholder}
                        onChange={this.onInputChange} className={className} style={style} />
             </div>

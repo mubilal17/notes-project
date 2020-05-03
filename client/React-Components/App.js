@@ -1,13 +1,14 @@
 const Editor = require('./editor.d/Editor.js');
 const Sidebar = require('./sidebar.d/Sidebar');
+const WorkspaceAPI = require('./Data/WorkspaceAPI');
 const volatileRepository = require('./Data/volatile-repository');
-console.log(volatileRepository);
+let workspaceAPI = new WorkspaceAPI();
+workspaceAPI.fetch();
 class App extends React.Component
 {
     constructor(props)
     {
         super(props);
-
         const focusedDocument = volatileRepository.docs[0];
         const sections = volatileRepository.getSections();
 
