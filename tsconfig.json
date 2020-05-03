@@ -1,6 +1,6 @@
 {
   "include": [
-    "server/**/*"
+    "Server/**/*"
   ],
   "compilerOptions": {
     "outDir": "./build/server",

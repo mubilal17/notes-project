@@ -1,5 +1,5 @@
-const Editor = require('./editor.d/Editor.js');
-const Sidebar = require('./sidebar.d/Sidebar');
+const Editor = require('./Components/editor.d/Editor.js');
+const Sidebar = require('./Components/sidebar.d/Sidebar');
 const WorkspaceAPI = require('./Data/WorkspaceAPI');
 const volatileRepository = require('./Data/volatile-repository');
 let workspaceAPI = new WorkspaceAPI();

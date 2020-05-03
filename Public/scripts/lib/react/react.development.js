@@ -459,7 +459,7 @@
      *
      * @param {ReactClass} publicInstance The instance that should rerender.
      * @param {?function} callback Called after component is updated.
-     * @param {?string} callerName name of the calling function in the public API.
+     * @param {?string} callerName name of the calling function in the Public API.
      * @internal
      */
     enqueueForceUpdate: function (publicInstance, callback, callerName) {
@@ -476,7 +476,7 @@
      * @param {ReactClass} publicInstance The instance that should rerender.
      * @param {object} completeState Next state.
      * @param {?function} callback Called after component is updated.
-     * @param {?string} callerName name of the calling function in the public API.
+     * @param {?string} callerName name of the calling function in the Public API.
      * @internal
      */
     enqueueReplaceState: function (publicInstance, completeState, callback, callerName) {
@@ -492,7 +492,7 @@
      * @param {ReactClass} publicInstance The instance that should rerender.
      * @param {object} partialState Next partial state to be merged with state.
      * @param {?function} callback Called after component is updated.
-     * @param {?string} Name of the calling function in the public API.
+     * @param {?string} Name of the calling function in the Public API.
      * @internal
      */
     enqueueSetState: function (publicInstance, partialState, callback, callerName) {
@@ -1363,7 +1363,7 @@
       _currentValue: defaultValue,
       _currentValue2: defaultValue,
       // Used to track how many concurrent renderers this context currently
-      // supports within in a single renderer. Such as parallel server rendering.
+      // supports within in a single renderer. Such as parallel Server rendering.
       _threadCount: 0,
       // These are circular
       Provider: null,
