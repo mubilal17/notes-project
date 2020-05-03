@@ -12,7 +12,7 @@ class Page extends React.Component {
     {
         const key = `doc${this.documentId}elem${element.id}`;
 
-        return <Element key={key} elementId={element.id} type={element.type}
+        return <Element id={key} key={key} elementId={element.id} type={element.type}
                         content={element.content} onContentChange={this.props.onElementModified} />;
     }
 

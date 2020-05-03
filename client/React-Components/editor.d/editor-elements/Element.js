@@ -1,3 +1,5 @@
+const EditElementButton = require('./EditElementButton');
+
 const pStyle = {
     fontSize: '1.25em'
 };
@@ -12,8 +14,8 @@ class Element extends React.Component{
     constructor(props)
     {
         super(props);
-        this.hoverSpanId = 'elem' + this.props.elementId;
-        this.hoverSpanSelector = 'elem' + this.props.elementId + ' span';
+        this.hoverSpanId = this.props.id + 'hoverdragspan'
+        this.editElementId = this.props.id + 'editElement';
         let style = {};
         Object.assign(style, pStyle);
 
@@ -21,11 +23,12 @@ class Element extends React.Component{
             Object.assign(style, hStyle);
         this.style = style;
         this.onInputChange = this.onInputChange.bind(this);
-        this.toggleDragButtonVisibility = this.toggleDragButtonVisibility.bind(this);
+        this.onElementHover = this.onElementHover.bind(this);
     }
 
     onInputChange(event)
     {
+        console.log(this.props);
         if (this.props.onContentChange)
         {
             const eventData = {elementId: this.props.elementId, content: event.target.value};
@@ -43,17 +46,22 @@ class Element extends React.Component{
         console.log('dropping');
     }
 
-    toggleDragButtonVisibility(event)
+    onElementHover(event)
     {
-        const elem = $('#' + this.hoverSpanSelector);
+        const dragElem = $('#' + this.hoverSpanId);
+        const editElem = $('#' + this.editElementId);
         if (event.type == 'mouseenter')
         {
-            elem.removeClass('invisible')
+            dragElem.removeClass('invisible')
+                .addClass('visible');
+            editElem.removeClass('invisible')
                 .addClass('visible');
         }
         else
         {
-            elem.removeClass('visible')
+            dragElem.removeClass('visible')
+                .addClass('invisible');
+            editElem.removeClass('visible')
                 .addClass('invisible');
         }
     }
@@ -61,16 +69,18 @@ class Element extends React.Component{
     render()
     {
         let type = "text";
-        let className = "form-control my-2 border-0";
+        let className = "form-control ml-2 my-2 border-0";
         let style = this.style;
         let placeholder = "Content goes here...";
         return (
-            <div id={this.hoverSpanId} className="input-group flex-nowrap"
-                 onMouseEnter={this.toggleDragButtonVisibility} onMouseLeave={this.toggleDragButtonVisibility}>
-                <span className="btn p-0 mt-3 align-bottom material-icons invisible" style={ {cursor: 'move'}}
+            <div className="input-group flex-nowrap"
+                 onMouseEnter={this.onElementHover} onMouseLeave={this.onElementHover}>
+                <span id={this.hoverSpanId} className="btn  btn-outline-light p-0 mt-3 align-bottom material-icons invisible" style={ {cursor: 'move'}}
                       draggable onDrag={this.dragElement} onDrop={this.dropElement}>
                     drag_handle
                 </span>
+                <EditElementButton className="invisible" id={this.editElementId}/>
+
                 <input type={type} value={this.props.content} placeholder={placeholder}
                        onChange={this.onInputChange} className={className} style={style} />
             </div>
