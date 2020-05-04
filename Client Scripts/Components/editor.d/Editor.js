@@ -1,5 +1,5 @@
 const Title = require('./editor-elements/Title.js');
-const Page = require('./editor-elements/Page.js');
+const Page = require('./editor-elements/PageView.js');
 const AddNewElement = require('./editor-elements/AddElementButton');
 
 class Editor extends React.Component {
@@ -31,10 +31,7 @@ class Editor extends React.Component {
         let page = this.props.page;
         return (
             <div id="editor" className="container bg-white shadow w-100 vh-100 px-3 pt-2 border rounded">
-                <Title sectionTitle={this.props.sectionTitle}> {page.title} </Title>
-                <Page onElementModified={this.updateContent}>
-                    {page}
-                </Page>
+                {this.props.children}
                 <AddNewElement onElementClicked={this.addNewElementToPage}>Add New Element</AddNewElement>
             </div>
         )

@@ -6,6 +6,8 @@ const PageLink = require('./Components/sidebar.d/PageLink');
 const SectionNav = require('./Components/sidebar.d/SectionNav');
 import {WorkspaceAPI} from "./Data/WorkspaceAPI";
 
+const Title = require('./Components/editor.d/editor-elements/Title');
+const PageView = require('./Components/editor.d/editor-elements/PageView');
 
 const repository = new WorkspaceAPI();
 
@@ -34,11 +36,12 @@ class App extends React.Component<{}, AppState>
 
     updatePage(pageUpdateEvent)
     {
-        if(pageUpdateEvent.type == 'element')
+        if(pageUpdateEvent.type == 'elementContentModified')
         {
             let page = repository.getPage(this.state.focusedSection.id, this.state.focusedPage.id);
-            page.updateElement(pageUpdateEvent.elementId, pageUpdateEvent.value);
+            page.updateElement(pageUpdateEvent.elementId, pageUpdateEvent.content);
             this.setState({focusedPage: page});
+            console.log(this.state.focusedPage);
         }
         if(pageUpdateEvent.type == 'elementCreated')
         {
@@ -64,7 +67,12 @@ class App extends React.Component<{}, AppState>
                     <div className="offset-col-1 col-10 p-0 m-0 h-100 w-100">
 
                         <div id="editor-wrapper" className="container-fluid border-top-0 m-0 p-0 h-100 w-100">
-                            <Editor sectionTitle={this.state.focusedSection.title} page={this.state.focusedPage} onPageChange={this.updatePage} />
+                            <Editor>
+                                <Title sectionTitle={this.state.focusedSection.title}>{this.state.focusedPage.title}</Title>
+                                <PageView  onPageChange={this.updatePage}>
+                                    {this.state.focusedPage}
+                                </PageView>
+                            </Editor>
                         </div>
 
                     </div>

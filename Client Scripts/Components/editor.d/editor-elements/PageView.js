@@ -1,7 +1,7 @@
 const Element = require('./Element');
 
 
-class Page extends React.Component {
+class PageView extends React.Component {
     constructor(props)
     {
         super(props);
@@ -13,7 +13,7 @@ class Page extends React.Component {
         const key = `doc${this.pageId}elem${element.id}`;
 
         return <Element id={key} key={key} elementId={element.id} type={element.type}
-                        content={element.content} onContentChange={this.props.onElementModified} />;
+                        content={element.content} onContentChange={this.props.onPageChange} />;
     }
 
     render()
@@ -28,4 +28,4 @@ class Page extends React.Component {
     }
 }
 
-module.exports = Page;
+module.exports = PageView;
