@@ -5,6 +5,8 @@
   "compilerOptions": {
     "outDir": "./build/server",
     "allowJs": true,
-    "target": "es5"
+    "target": "es5",
+    "jsx": "react",
+    "noImplicitUseStrict": true
   }
 }

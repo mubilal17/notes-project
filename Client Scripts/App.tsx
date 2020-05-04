@@ -1,10 +1,14 @@
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 const Editor = require('./Components/editor.d/Editor.js');
 const Sidebar = require('./Components/sidebar.d/Sidebar');
 const WorkspaceAPI = require('./Data/WorkspaceAPI');
 
 const repository = new WorkspaceAPI();
 
-class App extends React.Component
+type AppState = {focusedSection, focusedPage, sections, loaded: boolean};
+
+class App extends React.Component<{}, AppState>
 {
     constructor(props)
     {
@@ -14,7 +18,7 @@ class App extends React.Component
         const sections = repository.getSections();
         this.state = {focusedPage: focusedPage, sections: sections}
          */
-        this.state = {focusedSection: null, focusedPage: null, sections: null, loaded: false}
+        this.state = {focusedSection: null, focusedPage: null, sections: null, loaded: false};
         repository.getSections().then( sections => {
             this.setState({focusedSection: sections[0], focusedPage: sections[0].pages[0], sections: sections, loaded: true});
         });
@@ -72,4 +76,4 @@ class App extends React.Component
     }
 }
 
-ReactDOM.render(<App />, document.getElementById('main-page'))
+ReactDOM.render(<App />, document.getElementById('main-page'));

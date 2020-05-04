@@ -1,12 +1,12 @@
 const fs = require('fs');
 const babelify = require('babelify');
+const tsify = require('tsify');
 const watchify = require('watchify');
 const browserify = require('browserify');
 
 
 
-const entryPointReactScripts = './Client Scripts/App.js';
-
+const entryPointReactScripts = './Client Scripts/App.tsx';
 
 
 function setupBrowserifyBundle(scriptPaths, bundleName)
@@ -24,7 +24,9 @@ function setupBrowserifyBundle(scriptPaths, bundleName)
             .pipe(fs.createWriteStream('Public/scripts/' + bundleName));
     };
 
-    bundle.transform(babelify)
+    bundle
+        .plugin(tsify)
+        .transform(babelify)
         .on('error', err => console.log('Got Error Bundling ' + bundleName + ': ' + err.message))
         .on('update', updateBundle);
 
