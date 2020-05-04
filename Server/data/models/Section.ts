@@ -7,11 +7,11 @@ class Section {
 
     private pageIdCounter: number;
 
-    constructor(id, title='Untitled Section')
+    constructor(id, title='Untitled Section', pages?: Array<Page>)
     {
         this.id = id;
         this.title = title;
-        this.pages = [];
+        this.pages = pages ?? [];
 
         this.pageIdCounter = 0;
     }

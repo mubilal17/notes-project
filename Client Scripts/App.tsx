@@ -2,7 +2,8 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 const Editor = require('./Components/editor.d/Editor.js');
 const Sidebar = require('./Components/sidebar.d/Sidebar');
-const WorkspaceAPI = require('./Data/WorkspaceAPI');
+import {WorkspaceAPI} from "./Data/WorkspaceAPI";
+
 
 const repository = new WorkspaceAPI();
 
