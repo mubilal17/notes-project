@@ -2,6 +2,8 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 const Editor = require('./Components/editor.d/Editor.js');
 const Sidebar = require('./Components/sidebar.d/Sidebar');
+const PageLink = require('./Components/sidebar.d/PageLink');
+const SectionNav = require('./Components/sidebar.d/SectionNav');
 import {WorkspaceAPI} from "./Data/WorkspaceAPI";
 
 
@@ -14,11 +16,6 @@ class App extends React.Component<{}, AppState>
     constructor(props)
     {
         super(props);
-        /*
-        const focusedPage = repository.docs[0];
-        const sections = repository.getSections();
-        this.state = {focusedPage: focusedPage, sections: sections}
-         */
         this.state = {focusedSection: null, focusedPage: null, sections: null, loaded: false};
         repository.getSections().then( sections => {
             this.setState({focusedSection: sections[0], focusedPage: sections[0].pages[0], sections: sections, loaded: true});
@@ -59,9 +56,10 @@ class App extends React.Component<{}, AppState>
             <div id="main" className="container-fluid p-0 m-0 h-100 w-100">
                 <div className="row p-0 m-0 h-100 w-100">
                     <div id="sidebar-wrapper" className="col-2 p-0 m-0 h-100 w-100">
-                        <Sidebar sections={this.state.sections}
-                                 activeSectionId={this.state.focusedSection.id} activePageId={this.state.focusedPage.id}
-                                 onPageLinkClicked={this.onPageLinkClicked}/>
+                        <Sidebar activeSectionId={this.state.focusedSection.id} activePageId={this.state.focusedPage.id}
+                                 onPageLinkClicked={this.onPageLinkClicked}>
+                            {this.state.sections}
+                        </Sidebar>
                     </div>
                     <div className="offset-col-1 col-10 p-0 m-0 h-100 w-100">
 

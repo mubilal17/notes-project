@@ -11,6 +11,7 @@ class PageLink extends React.Component {
     onClick()
     {
         let page = this.props.page;
+
         if(this.props.onPageLinkClicked)
         {
             const event = {sectionClickedId: this.props.sectionId, pageClicked: {id: page.id, title: page.title}}
@@ -20,11 +21,10 @@ class PageLink extends React.Component {
 
     render()
     {
-        let page = this.props.page;
         return (
             <a onClick={this.onClick} href="#"
                style={this.props.active ? this.activeStyle : {}} className={'nav-item nav-link rounded text-dark'}>
-                {page.title}
+                {this.props.children}
             </a>
         )
     }

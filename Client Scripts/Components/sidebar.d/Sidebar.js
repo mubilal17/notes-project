@@ -1,3 +1,4 @@
+import * as React from "react";
 
 const SectionNav = require('./SectionNav');
 
@@ -11,7 +12,6 @@ class Sidebar extends React.Component {
     constructor(props)
     {
         super(props);
-        this.onPageLinkClicked = this.onPageLinkClicked.bind(this);
     }
 
     componentDidMount()
@@ -21,25 +21,12 @@ class Sidebar extends React.Component {
         dashboardBtn.hover(() => dashboardBtn.addClass(hoverClasses), () => dashboardBtn.removeClass(hoverClasses));
     }
 
-    onPageLinkClicked(event)
-    {
-        if (this.props.onPageLinkClicked)
-        {
-            let sectionClicked = this.props.sections.find(section => section.id == event.sectionClickedId);
-            event.sectionClicked = sectionClicked;
-            this.props.onPageLinkClicked(event);
-        }
-    }
-
     getSectionNavs(section)
     {
-        const sectionTitle = section.title;
-        let activeSection = false;
-        if (section.id == this.props.activeSectionId)
-            activeSection = true;
-        return <SectionNav key={sectionTitle} sectionTitle={sectionTitle} sectionId={section.id}
-                           activeSection={activeSection} pages={section.pages} onPageLinkClicked={this.onPageLinkClicked}
-                           activePageId={this.props.activePageId}/>
+        let active = this.props.activeSectionId == section.id;
+        let activePageId = this.props.activePageId;
+        return <SectionNav key={section.id + section.title} section={section} onPageLinkClicked={this.props.onPageLinkClicked}
+                           active={active} activePageId={activePageId} />
     }
 
     render()
@@ -60,7 +47,7 @@ class Sidebar extends React.Component {
                 <hr />
 
                 <div className="px-3">
-                    {this.props.sections.map( section => this.getSectionNavs(section))}
+                    {this.props.children.map(section => this.getSectionNavs(section))}
                 </div>
             </div>
         )

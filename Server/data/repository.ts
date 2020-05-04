@@ -8,7 +8,7 @@ class Repository {
     constructor()
     {
         this.sections = [];
-        this.sectionIdCounter = 0;
+        this.sectionIdCounter = 1;
         for (let i = 0; i < volatileData.sections.length; i++)
         {
             let section = new Section(this.sectionIdCounter++, volatileData.sections[i]);
