@@ -1,5 +1,4 @@
-const EditElementButton = require('./EditElementButton');
-const DragButton = require('./DragButton');
+const ElementControls = require('./ElementControls');
 
 const pStyle = {
     fontSize: '1.25em'
@@ -42,12 +41,8 @@ class Element extends React.Component{
         let style = this.style;
         let placeholder = "Content goes here...";
         return (
-            <div className="input-group flex-nowrap"
-                 onMouseEnter={this.onElementHover} onMouseLeave={this.onElementHover}>
-                <div>
-                    <DragButton id={this.dragButtonId} />
-                    <EditElementButton id={this.editElementId} />
-                </div>
+            <div className="input-group flex-nowrap">
+                <ElementControls id={this.props.id + 'elemControls'} />
                 <input type={type} value={this.props.content} placeholder={placeholder}
                        onChange={this.onInputChange} className={className} style={style} />
             </div>
