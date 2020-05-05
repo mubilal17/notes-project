@@ -24,6 +24,7 @@ class App extends React.Component<{}, AppState>
         });
         this.onPageLinkClicked = this.onPageLinkClicked.bind(this);
         this.updatePage = this.updatePage.bind(this);
+        this.createPage = this.createPage.bind(this);
 
     }
 
@@ -32,6 +33,14 @@ class App extends React.Component<{}, AppState>
         const pageClickedId = event.pageClicked.id;
         const sectionClicked = event.sectionClicked;
         this.setState({focusedSection: sectionClicked, focusedPage: repository.getPage(sectionClicked.id, pageClickedId)});
+    }
+
+    createPage(event)
+    {
+        const sectionId = event.targetSection.id;
+        const section = repository.getSection(sectionId);
+        section.appendNewPage();
+        repository.getSections().then(sections => this.setState({sections: sections}));
     }
 
     updatePage(pageUpdateEvent)
@@ -60,7 +69,7 @@ class App extends React.Component<{}, AppState>
                 <div className="row p-0 m-0 h-100 w-100">
                     <div id="sidebar-wrapper" className="col-2 p-0 m-0 h-100 w-100">
                         <Sidebar activeSectionId={this.state.focusedSection.id} activePageId={this.state.focusedPage.id}
-                                 onPageLinkClicked={this.onPageLinkClicked}>
+                                 onPageLinkClicked={this.onPageLinkClicked} onNewPageClicked={this.createPage}>
                             {this.state.sections}
                         </Sidebar>
                     </div>

@@ -1,10 +1,12 @@
 const PageLink = require('./PageLink.js');
+const AddPageButton = require('./AddPageButton');
 
 class SectionNav extends React.Component {
     constructor(props)
     {
         super(props);
         this.onPageLinkClicked = this.onPageLinkClicked.bind(this);
+        this.onNewPageClicked = this.onNewPageClicked.bind(this);
     }
 
     onPageLinkClicked(event)
@@ -15,6 +17,16 @@ class SectionNav extends React.Component {
             this.props.onPageLinkClicked(event);
         }
     }
+
+    onNewPageClicked()
+    {
+        if (this.props.onNewPageClicked)
+        {
+            const event = {targetSection: this.props.section};
+            this.props.onNewPageClicked(event);
+        }
+    }
+
 
     getPageLink(page)
     {
@@ -34,6 +46,7 @@ class SectionNav extends React.Component {
                 </a>
                 <nav className="nav  flex-column px-1 mt-3" style={ {'lineHeight': '1em'}}>
                     {this.props.section.pages.map(page => this.getPageLink(page))}
+                    <AddPageButton onNewPageClicked={this.onNewPageClicked} />
                 </nav>
             </div>
         )

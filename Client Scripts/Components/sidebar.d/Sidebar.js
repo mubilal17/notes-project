@@ -41,7 +41,7 @@ class Sidebar extends React.Component {
         let active = this.props.activeSectionId == section.id;
         let activePageId = this.props.activePageId;
         return <SectionNav key={section.id + section.title} section={section} onPageLinkClicked={this.props.onPageLinkClicked}
-                           active={active} activePageId={activePageId} />
+                           onNewPageClicked={this.props.onNewPageClicked} active={active} activePageId={activePageId} />
     }
 
     render()
