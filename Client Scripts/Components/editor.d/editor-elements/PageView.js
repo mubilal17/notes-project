@@ -1,11 +1,18 @@
 const Element = require('./Element');
-
+const AddNewElement = require('./AddElementButton');
 
 class PageView extends React.Component {
     constructor(props)
     {
         super(props);
         this.pageId = this.props.children.id;
+        this.addNewElementToPage = this.addNewElementToPage.bind(this);
+    }
+
+    addNewElementToPage(event)
+    {
+        const pageUpdateEvent = {type: 'elementCreated', element: {type: 'p', content: ''}}
+        this.props.onPageChange(pageUpdateEvent);
     }
 
     getElementView(element)
@@ -23,6 +30,7 @@ class PageView extends React.Component {
         return (
             <div className="mt-5">
                 {elementMarkup}
+                <AddNewElement onElementClicked={this.addNewElementToPage}>Add New Element</AddNewElement>
             </div>
         )
     }

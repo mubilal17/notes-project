@@ -12,8 +12,12 @@ class Page {
         this.id = id;
         this.title = title;
         this.elements = elements;
-
-        this.elementIdCounter = 0;
+        let maxNumber = 0;
+        elements.forEach(element => {
+            if (element.id > maxNumber)
+                maxNumber = element.id;
+        });
+        this.elementIdCounter = maxNumber + 1;
     }
 
     public appendNewElement()
