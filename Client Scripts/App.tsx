@@ -56,7 +56,7 @@ class App extends React.Component<{}, AppState>
         if (this.state.loaded == false)
             return <div></div>;
         return (
-            <div id="main" className="container-fluid p-0 m-0 h-100 w-100">
+            <div className="container-fluid p-0 m-0 h-100 w-100">
                 <div className="row p-0 m-0 h-100 w-100">
                     <div id="sidebar-wrapper" className="col-2 p-0 m-0 h-100 w-100">
                         <Sidebar activeSectionId={this.state.focusedSection.id} activePageId={this.state.focusedPage.id}
@@ -64,19 +64,14 @@ class App extends React.Component<{}, AppState>
                             {this.state.sections}
                         </Sidebar>
                     </div>
-                    <div className="offset-col-1 col-10 p-0 m-0 h-100 w-100">
-
-                        <div id="editor-wrapper" className="container-fluid border-top-0 m-0 p-0 h-100 w-100">
-                            <Editor>
-                                <Title sectionTitle={this.state.focusedSection.title}>{this.state.focusedPage.title}</Title>
-                                <PageView  onPageChange={this.updatePage}>
-                                    {this.state.focusedPage}
-                                </PageView>
-                            </Editor>
-                        </div>
-
+                    <div id="editor-wrapper" className="offset-col-1 col-10 p-0 m-0 h-100 w-100 container-fluid">
+                        <Editor>
+                            <Title sectionTitle={this.state.focusedSection.title}>{this.state.focusedPage.title}</Title>
+                            <PageView  onPageChange={this.updatePage}>
+                                {this.state.focusedPage}
+                            </PageView>
+                        </Editor>
                     </div>
-
                 </div>
             </div>
         )
