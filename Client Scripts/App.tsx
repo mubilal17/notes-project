@@ -4,12 +4,11 @@ const Editor = require('./Components/editor.d/Editor.js');
 const Sidebar = require('./Components/sidebar.d/Sidebar');
 const PageLink = require('./Components/sidebar.d/PageLink');
 const SectionNav = require('./Components/sidebar.d/SectionNav');
-import {WorkspaceAPI} from "./Data/WorkspaceAPI";
+const repository = require('./Data/WorkspaceAPI');
 
 const Title = require('./Components/editor.d/editor-elements/Title');
 const PageView = require('./Components/editor.d/editor-elements/PageView');
 
-const repository = new WorkspaceAPI();
 
 type AppState = {focusedSection, focusedPage, sections, loaded: boolean};
 
@@ -40,23 +39,22 @@ class App extends React.Component<{}, AppState>
         const sectionId = event.targetSection.id;
         const section = repository.getSection(sectionId);
         section.appendNewPage();
-        repository.getSections().then(sections => this.setState({sections: sections}));
+        this.setState({sections: this.state.sections});
     }
 
     updatePage(pageUpdateEvent)
     {
         if(pageUpdateEvent.type == 'elementContentModified')
         {
-            let page = repository.getPage(this.state.focusedSection.id, this.state.focusedPage.id);
-            page.updateElement(pageUpdateEvent.elementId, pageUpdateEvent.content);
-            this.setState({focusedPage: page});
-            console.log(this.state.focusedPage);
+            let focusedPage = this.state.focusedPage;
+            focusedPage.updateElement(pageUpdateEvent.elementId, pageUpdateEvent.content);
+            this.setState({focusedPage: focusedPage});
         }
         if(pageUpdateEvent.type == 'elementCreated')
         {
-            let page = repository.getPage(this.state.focusedSection.id, this.state.focusedPage.id);
-            page.addElement(pageUpdateEvent.element);
-            this.setState({focusedPage: page});
+            let focusedPage = this.state.focusedPage;
+            focusedPage.addElement(pageUpdateEvent.element);
+            this.setState({focusedPage: focusedPage});
         }
     }
 

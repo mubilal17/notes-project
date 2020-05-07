@@ -43,6 +43,13 @@ class WorkspaceAPI
         return section.pages.find(page => page.id == pageId);
     }
 
+    updateElementInPage(sectionId, pageId, elementId, content)
+    {
+        let page = this.getPage(sectionId, pageId);
+        let element = page.elements.find(element => element.id == elementId);
+        element.content = content;
+    }
+
     updatePage(sectionId, pageId, page)
     {
         let section = this.sections.find(section => section.id == sectionId);
@@ -51,4 +58,4 @@ class WorkspaceAPI
     }
 }
 
-export {WorkspaceAPI};
+module.exports = new WorkspaceAPI();;
