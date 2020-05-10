@@ -24,9 +24,13 @@
     import Sidebar from './Sidebar.vue'
     import SidebarSection from './SidebarViews/SidebarSection.vue'
     import SidebarPage from "./SidebarViews/SidebarPage.vue";
-    const SectionModel = require('./ViewModels/SectionModel');
-    const PageModel = require('./ViewModels/PageModel');
-    const ElementModel = require('./ViewModels/ElementModel');
+
+    import SectionModule from '../../Data Models/Section.ts';
+    import PageModule from '../../Data Models/Page.ts';
+    import PageElementModule from '../../Data Models/PageElement.ts';
+    let Section = SectionModule.Section;
+    let Page = PageModule.Page;
+    let PageElement = PageElementModule.PageElement;
 
     const sectionTitles = ['Calculus', 'Differential Equations', 'Linear Algebra'];
     const pageTitles = ['Overview', 'Terminology', 'Exercises']
@@ -36,12 +40,12 @@
         const sections = [];
         for (let i = 0; i < sectionTitles.length; i++)
         {
-            let section = new SectionModel(i, sectionTitles[i], []);
+            let section = new Section(i, sectionTitles[i]);
             for (let j = 0; j < pageTitles.length; j++)
             {
-                let element1 = new ElementModel(1, 'p', 'Hello, this is the first element of this page');
-                let element2 = new ElementModel(1, 'p', 'Hello, this is the second element of this page');
-                let page = new PageModel(0, pageTitles[j], [element1, element2]);
+                let element1 = new PageElement(1, 'p', 'Hello, this is the first element of this page');
+                let element2 = new PageElement(1, 'p', 'Hello, this is the second element of this page');
+                let page = new Page(0, pageTitles[j], [element1, element2]);
                 section.addPage(page);
             }
             sections.push(section);

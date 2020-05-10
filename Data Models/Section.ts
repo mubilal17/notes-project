@@ -1,12 +1,17 @@
-import {Page} from './Page'
+// @ts-ignore
+import PageModule from './Page.ts'
+let Page = PageModule.Page;
 
 class Section {
     id: number;
     title: string;
-    pages: Array<Page>
+
+    //@ts-ignore
+    pages: Array<Page>;
 
     private pageIdCounter: number;
 
+    //@ts-ignore
     constructor(id, title='Untitled Section', pages?: Array<Page>)
     {
         this.id = id;
@@ -16,6 +21,7 @@ class Section {
         this.pageIdCounter = 0;
     }
 
+    //@ts-ignore
     public appendNewPage()
     {
         let id = this.getNextPageId();
@@ -23,12 +29,14 @@ class Section {
         this.pages.push(page);
     }
 
+    //@ts-ignore
     public addPage(page: Page)
     {
         page.id = this.getNextPageId();
         this.pages.push(page);
     }
 
+    //@ts-ignore
     public updatePage(pageId: number, page: Page)
     {
         throw new Error('updatePage not implemented yet');
@@ -44,4 +52,4 @@ class Section {
     }
 }
 
-export {Section}
+export default {Section};

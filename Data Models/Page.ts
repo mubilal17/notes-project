@@ -1,12 +1,17 @@
-import {PageElement} from './PageElement';
+// @ts-ignore
+import PageElementModule from './PageElement.ts';
+let PageElement = PageElementModule.PageElement;
 
 class Page {
     id: number;
     title: string;
     section: string;
+    //@ts-ignore
     elements: Array<PageElement>;
 
     private elementIdCounter: number;
+
+    //@ts-ignore
     constructor(id: number = 0, title: string = 'Untitled Page', elements: Array<PageElement> = [])
     {
         this.id = id;
@@ -33,6 +38,8 @@ class Page {
         let element = new PageElement(id, type, content);
         this.elements.push(element);
     }
+
+    //@ts-ignore
     public getElement(elementId: number): PageElement
     {
         return this.elements.find( element => element.id == elementId);
@@ -57,4 +64,4 @@ class Page {
 
 }
 
-export {Page};
+export default {Page};

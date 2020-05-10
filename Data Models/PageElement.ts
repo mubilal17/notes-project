@@ -13,4 +13,4 @@ class PageElement
 
 }
 
-export {PageElement};
+export default {PageElement};

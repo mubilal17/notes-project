@@ -1,6 +1,7 @@
-import {Page} from './models/Page';
-import {Section} from './models/Section'
-import {PageElement} from "./models/PageElement";
+// @ts-ignore
+import {Page} from '../../Data Models/Page';
+// @ts-ignore
+import {Section} from '../../Data Models/Section'
 
 class Repository {
     private sections: Array<Section>
