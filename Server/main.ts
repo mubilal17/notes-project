@@ -1,4 +1,3 @@
-const setupBundleScripts = require('./SetupBundle');
 const express = require('express');
 const app = express();
 
@@ -6,8 +5,7 @@ const PORT = process.env.PORT || 5000;
 
 import {WorkspaceController} from './controllers/WorkspaceController';
 
-app.use(express.static('Public'));
-setupBundleScripts();
+app.use(express.static('Client/Public'));
 app.use('/workspace', WorkspaceController);
 
 
