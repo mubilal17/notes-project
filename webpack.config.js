@@ -33,13 +33,14 @@ module.exports = {
                 ]
             },
             {
-                test: /\.tsx?$/,
+                test: [/\.ts?$/, /\.tsx?$/],
                 use: 'ts-loader',
                 exclude: /node_modules/,
             },
         ]
     },
     resolve: {
+        extensions: ['.js', '.vue', '.ts', '.tsx'],
         alias: {
             'vue$': 'vue/dist/vue.esm.js' // 'vue/dist/vue.common.js' for webpack 1
         }

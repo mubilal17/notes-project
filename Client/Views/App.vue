@@ -25,9 +25,9 @@
     import SidebarSection from './SidebarViews/SidebarSection.vue'
     import SidebarPage from "./SidebarViews/SidebarPage.vue";
 
-    import SectionModule from '../../Data Models/Section.ts';
-    import PageModule from '../../Data Models/Page.ts';
-    import PageElementModule from '../../Data Models/PageElement.ts';
+    import SectionModule from '../../Data Models/Section';
+    import PageModule from '../../Data Models/Page';
+    import PageElementModule from '../../Data Models/PageElement';
     let Section = SectionModule.Section;
     let Page = PageModule.Page;
     let PageElement = PageElementModule.PageElement;

@@ -1,5 +1,5 @@
 // @ts-ignore
-import PageElementModule from './PageElement.ts';
+import PageElementModule from './PageElement';
 let PageElement = PageElementModule.PageElement;
 
 class Page {

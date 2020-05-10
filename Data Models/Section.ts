@@ -1,5 +1,5 @@
 // @ts-ignore
-import PageModule from './Page.ts'
+import PageModule from './Page'
 let Page = PageModule.Page;
 
 class Section {
