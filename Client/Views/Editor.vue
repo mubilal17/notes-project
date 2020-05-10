@@ -3,7 +3,7 @@
         <div id="editor" class="container bg-white shadow w-100 vh-100 px-4 pt-2 border rounded">
             <header class="mt-5 px-3 py-3 pb-1  display-4" style="font-size: 25px" >
                 <span class="text-muted"> {{sectionTitle}} / </span>
-                <span class="" contentEditable> {{page.title}} </span>
+                <input class="page-title" type="text" v-model:value="page.title" />
                 <hr />
             </header>
 
@@ -36,3 +36,11 @@
         }
     };
 </script>
+
+
+<style scoped>
+    .page-title {
+        border: none;
+        font-weight: lighter;
+    }
+</style>
