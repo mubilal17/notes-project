@@ -3,6 +3,7 @@
     <input class="form-control border-0 my-3" v-model="element.content"
            placeholder="Content goes here..."
            v-bind:class="{shadow: showShadow}"
+           v-on:input="onInputChange"
            v-on:focusin="isFocused = true" v-on:focusout="isFocused = false"
            v-on:mouseenter="isHovered = true" v-on:mouseleave="isHovered = false" />
 </template>
@@ -18,6 +19,11 @@
             }
         },
         props: ['element'],
+        methods: {
+            onInputChange: function(event){
+                this.$emit('inputModified', event);
+            }
+        }
     }
 </script>
 

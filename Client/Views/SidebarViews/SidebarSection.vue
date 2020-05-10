@@ -17,8 +17,9 @@
     export default {
         props: ['section'],
         methods: {
-            addNewPage: function() {
+            addNewPage: function(event) {
                 this.section.appendNewPage();
+                this.$emit('add-new-page-to-section', event)
             }
         }
     }

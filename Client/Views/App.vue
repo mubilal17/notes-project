@@ -4,7 +4,7 @@
     <div class="row h-100 w-100">
         <Sidebar v-bind:workspace-title="workspaceTitle">
             <div v-for="section in sections">
-                <SidebarSection v-bind:section="section">
+                <SidebarSection v-bind:section="section" v-on:add-new-page-to-section="onNewPageToSection">
                     <div v-for="page in section.pages">
                         <SidebarPage v-on:pagelink-click="onPageClicked"
                                     v-bind:page-id="page.id"  v-bind:page-section-id="section.id"
@@ -15,7 +15,10 @@
                 </SidebarSection>
             </div>
         </Sidebar>
-        <Editor v-bind:page="focusedPage" v-bind:section-title="focusedSection.title" />
+        <Editor v-bind:page="focusedPage" v-bind:section-title="focusedSection.title"
+            v-on:pageTitleChange="onFocusedPageTitleChanged"
+            v-on:pageElementModified="onFocusedPageElementUpdated"
+            v-on:newElementToPage="onNewElementToFocusedPage" />
     </div>
 </template>
 
@@ -77,7 +80,23 @@
                 let page = focusedSection.pages.find(page => page.id == event.pageclicked);
                 this.focusedSection = focusedSection;
                 this.focusedPage = page;
-            }
-        }
+            },
+
+            onFocusedPageTitleChanged: function(event) {
+                console.log(this.focusedPage.title);
+            },
+            onFocusedPageElementUpdated: function(event) {
+                console.log('element updated');
+            },
+
+            onNewElementToFocusedPage: function(event) {
+                console.log('new element added');
+            },
+
+            onNewPageToSection: function(event) {
+                console.log('new page added');
+            },
+
+        },
     }
 </script>
