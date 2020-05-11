@@ -1,0 +1,36 @@
+<template>
+    <div class="col-2 bg-light h-100 w-100 m-0 shadow-sm border-right">
+        <div>
+            <button class="btn float-left p-auto mt-1">
+                <span class="material-icons align-bottom">apps</span>
+                Dashboard
+            </button>
+            <button class="btn btn-light border-0 rounded-circle float-right p-auto">
+                <span class="material-icons align-middle py-1">settings</span>
+            </button>
+            <br />
+
+            <p class="text-center mt-5 display-4" style="font-size: 1.5em"> {{workspaceTitle}} </p>
+            <hr />
+        </div>
+
+        <slot />
+
+    </div>
+
+
+</template>
+
+
+<script>
+    export default {
+        data: function() {
+            return {
+                greeting: "Hello"
+            };
+        },
+        props: ['workspace-title'],
+        methods: {
+        }
+    };
+</script>
