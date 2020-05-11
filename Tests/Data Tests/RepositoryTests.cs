@@ -17,7 +17,7 @@ namespace Tests.Data_Tests
         [Fact]
         public void RepositoryReturnsWorkspace()
         {
-            Assert.NotNull(repository.getWorkspace());
+            Assert.NotNull(repository.getWorkspace(1));
         }
     }
 }

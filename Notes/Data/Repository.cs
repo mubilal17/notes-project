@@ -8,12 +8,12 @@ namespace Notes.Data
 {
     public class Repository
     {
-        private Workspace workspace;
+        private List<Workspace> workspaces;
         public Repository()
         {
             string[] sectionTitles = { "Core Language", "Objects and Types", "Object Oriented Programming"};
             string[] pageTitles = { "Overview", "Terminology", "Exercises" };
-            workspace = new Workspace();
+            Workspace workspace = new Workspace() { Id = 1 };
             for (int i = 0; i < sectionTitles.Length; i++)
             {
                 Section section = new Section() { Title = sectionTitles[i] };
@@ -28,11 +28,13 @@ namespace Notes.Data
 
                 workspace.addSection(section);
             }
+            workspaces = new List<Workspace>();
+            workspaces.Add(workspace);
         }
 
-        public Workspace getWorkspace()
+        public Workspace getWorkspace(int workspaceId)
         {
-            return workspace;
+            return workspaces.Find(workspace => workspace.Id == workspaceId);
         }
     }
 }
