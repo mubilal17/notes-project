@@ -22,7 +22,7 @@ namespace Notes.Data.Models
             Elements.ForEach(element =>
             {
                 if (element.Id > maxElementId)
-                    maxElementId = element.Id + 1;
+                    maxElementId = element.Id;
             });
             elementIdCounter = new IdCounter(maxElementId + 1);
         }

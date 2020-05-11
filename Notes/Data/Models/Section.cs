@@ -22,7 +22,7 @@ namespace Notes.Data.Models
             Pages.ForEach(element =>
             {
                 if (element.Id > maxPageId)
-                    maxPageId = element.Id + 1;
+                    maxPageId = element.Id;
             });
             pageIdCounter = new IdCounter(maxPageId + 1);
         }
@@ -39,6 +39,11 @@ namespace Notes.Data.Models
             int id = pageIdCounter.getNextThenIncrement();
             page.Id = id;
             Pages.Add(page);
+        }
+
+        public Page getPage(int pageId)
+        {
+            return Pages.Find(page => page.Id == pageId);
         }
 
         public void updatePage(int pageId, Page page)

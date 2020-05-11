@@ -36,5 +36,17 @@ namespace Notes.Data
         {
             return workspaces.Find(workspace => workspace.Id == workspaceId);
         }
+
+        public Section getSection(int workspaceId, int sectionId)
+        {
+            Workspace workspace = getWorkspace(workspaceId);
+            return workspace.getSection(sectionId);
+        }
+
+        public Page getPage(int workspaceId, int sectionId, int pageId)
+        {
+            Section section = getSection(workspaceId, sectionId);
+            return section.getPage(pageId);
+        }
     }
 }

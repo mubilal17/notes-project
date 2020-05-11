@@ -23,7 +23,7 @@ namespace Notes.Data.Models
             Sections.ForEach(element =>
             {
                 if (element.Id > maxSectionId)
-                    maxSectionId = element.Id + 1;
+                    maxSectionId = element.Id;
             });
             sectionIdCounter = new IdCounter(maxSectionId + 1);
         }
@@ -33,6 +33,11 @@ namespace Notes.Data.Models
             int id = sectionIdCounter.getNextThenIncrement();
             section.Id = id;
             Sections.Add(section);
+        }
+
+        public Section getSection(int sectionId)
+        {
+            return Sections.Find(section => section.Id == sectionId);
         }
     }
 }

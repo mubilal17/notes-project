@@ -18,7 +18,7 @@ namespace Notes.Data
 
         public int getNextThenIncrement()
         {
-            return ++counter;
+            return counter++;
         }
     }
 }
