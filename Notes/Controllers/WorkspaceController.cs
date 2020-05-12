@@ -20,6 +20,7 @@ namespace Notes.Controllers
             this.repository = repository;
         }
         [HttpGet]
+        [Produces("application/json")]
         public Workspace Get(int workspaceId)
         {
             Workspace workspace = repository.getWorkspace(workspaceId);
