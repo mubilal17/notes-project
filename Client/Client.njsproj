@@ -36,7 +36,16 @@
     <Content Include="src\app.js" />
     <Content Include="src\Data Models\Page.js" />
     <Content Include="src\Data Models\PageElement.js" />
+    <Content Include="src\Data Models\RepositoryNode.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="src\Data Models\Section.js" />
+    <Content Include="src\Vue Views\App.vue" />
+    <Content Include="src\Vue Views\Editor.vue" />
+    <Content Include="src\Vue Views\EditorViews\PageElement.vue" />
+    <Content Include="src\Vue Views\Sidebar.vue" />
+    <Content Include="src\Vue Views\SidebarViews\SidebarPage.vue" />
+    <Content Include="src\Vue Views\SidebarViews\SidebarSection.vue" />
     <Content Include="webpack.config.js" />
     <Content Include="src\Workspace.js" />
     <Content Include="package-lock.json" />
@@ -50,6 +59,7 @@
     <Folder Include="src\" />
     <Folder Include="src\Vue Views\" />
     <Folder Include="src\Vue Views\EditorViews\" />
+    <Folder Include="src\Vue Views\SidebarViews\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
   <ProjectExtensions>

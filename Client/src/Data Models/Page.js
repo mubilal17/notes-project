@@ -1,10 +1,12 @@
 
-const PageElement = require('./PageElement');
+import { PageElement } from './PageElement';
+import { RepositoryNode } from './RepositoryNode';
 
-class Page {
+class Page extends RepositoryNode {
 
     constructor(id, title, elements)
     {
+        super();
         this.id = id;
         this.title = title;
         this.elements = elements;
@@ -56,4 +58,4 @@ class Page {
 
 }
 
-module.exports = Page;
+export { Page };

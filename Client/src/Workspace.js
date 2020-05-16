@@ -1,4 +1,4 @@
-﻿import Section from './Data Models/Section.js';
+﻿import { Section } from './Data Models/Section.js';
 import Page from './Data Models/Page.js';
 import PageElement from './Data Models/PageElement.js';
 

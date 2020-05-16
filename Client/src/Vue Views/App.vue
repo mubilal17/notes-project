@@ -28,9 +28,9 @@
     import SidebarSection from './SidebarViews/SidebarSection.vue'
     import SidebarPage from "./SidebarViews/SidebarPage.vue";
 
-    import Section from '../Data Models/Section.js';
-    import Page from '../Data Models/Page.js';
-    import PageElement from '../Data Models/PageElement.js';
+    import {Section} from '../Data Models/Section.js';
+    import {Page} from '../Data Models/Page.js';
+    import {PageElement} from '../Data Models/PageElement.js';
 
     const sectionTitles = ['Calculus', 'Differential Equations', 'Linear Algebra'];
     const pageTitles = ['Overview', 'Terminology', 'Exercises']

@@ -1,9 +1,11 @@
-let Page = require('./Page');
+import { Page } from './Page';
+import { RepositoryNode } from './RepositoryNode';
 
-class Section {
+class Section extends RepositoryNode {
 
     constructor(id, title, pages)
     {
+        super();
         this.id = id != undefined ? id : 0;
         this.title = title != undefined ? title : 'Untitled Page';
         this.pages = pages != undefined ? pages : [];
@@ -53,4 +55,4 @@ class Section {
     }
 }
 
-module.exports = Section;
+export { Section };
