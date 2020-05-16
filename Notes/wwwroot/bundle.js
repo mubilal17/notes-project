@@ -115,7 +115,7 @@ eval("class PageElement {\n  constructor(elementId, type, content) {\n    this.i
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("let Page = __webpack_require__(/*! ./Page */ \"./Client/Data Models/Page.js\");\n\nclass Section {\n  constructor(id, title, pages) {\n    this.id = id != undefined ? id : 0;\n    this.title = title != undefined ? title : 'Untitled Page';\n    this.pages = pages != undefined ? pages : [];\n    this.pageIdCounter = 0;\n  }\n\n  appendNewPage() {\n    let id = this.getNextPageId();\n    let page = new Page(id);\n    this.pages.push(page);\n  }\n\n  addPage(page) {\n    page.id = this.getNextPageId();\n    this.pages.push(page);\n  }\n\n  updatePage(pageId, page) {\n    throw new Error('updatePage not implemented yet');\n  }\n\n  removePage(pageId) {\n    throw new Error('removePage not implemented yet');\n  }\n\n  getNextPageId() {\n    return ++this.pageIdCounter;\n  }\n\n}\n\nmodule.exports = Section;\n\n//# sourceURL=webpack:///./Client/Data_Models/Section.js?");
+eval("let Page = __webpack_require__(/*! ./Page */ \"./Client/Data Models/Page.js\");\n\nclass Section {\n  constructor(id, title, pages) {\n    this.id = id != undefined ? id : 0;\n    this.title = title != undefined ? title : 'Untitled Page';\n    this.pages = pages != undefined ? pages : [];\n    this.pageIdCounter = 0;\n  }\n\n  get Id() {\n    return this.id;\n  }\n\n  set Id(value) {\n    this.id = value;\n  }\n\n  appendNewPage() {\n    let id = this.getNextPageId();\n    let page = new Page(id);\n    this.pages.push(page);\n  }\n\n  addPage(page) {\n    page.id = this.getNextPageId();\n    this.pages.push(page);\n  }\n\n  updatePage(pageId, page) {\n    throw new Error('updatePage not implemented yet');\n  }\n\n  removePage(pageId) {\n    throw new Error('removePage not implemented yet');\n  }\n\n  getNextPageId() {\n    return ++this.pageIdCounter;\n  }\n\n}\n\nmodule.exports = Section;\n\n//# sourceURL=webpack:///./Client/Data_Models/Section.js?");
 
 /***/ }),
 
@@ -359,6 +359,18 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _nod
 
 /***/ }),
 
+/***/ "./Client/Workspace.js":
+/*!*****************************!*\
+  !*** ./Client/Workspace.js ***!
+  \*****************************/
+/*! exports provided: Workspace */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"Workspace\", function() { return Workspace; });\n/* harmony import */ var _Data_Models_Section_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Data Models/Section.js */ \"./Client/Data Models/Section.js\");\n/* harmony import */ var _Data_Models_Section_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_Data_Models_Section_js__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _Data_Models_Page_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Data Models/Page.js */ \"./Client/Data Models/Page.js\");\n/* harmony import */ var _Data_Models_Page_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_Data_Models_Page_js__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _Data_Models_PageElement_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Data Models/PageElement.js */ \"./Client/Data Models/PageElement.js\");\n/* harmony import */ var _Data_Models_PageElement_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_Data_Models_PageElement_js__WEBPACK_IMPORTED_MODULE_2__);\n\n\n\n\nclass Workspace {\n  constructor(workspaceJSON) {\n    this.id = workspaceJSON.id;\n    this.title = workspaceJSON.title;\n    this.sections = [];\n\n    for (let i = 0; i < workspaceJSON.sections.length; i++) {\n      let sectionData = workspaceJSON.sections[i];\n      let section = new _Data_Models_Section_js__WEBPACK_IMPORTED_MODULE_0___default.a(sectionData.id, sectionData.title, sectionData.pages);\n      this.sections.push(section);\n    }\n  }\n\n  getSection(sectionId) {\n    return this.sections.find(section => section.id == sectionId);\n  }\n\n}\n\n\n\n//# sourceURL=webpack:///./Client/Workspace.js?");
+
+/***/ }),
+
 /***/ "./Client/app.js":
 /*!***********************!*\
   !*** ./Client/app.js ***!
@@ -367,7 +379,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _nod
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ \"./node_modules/vue/dist/vue.esm.js\");\n/* harmony import */ var _Vue_Views_App_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Vue Views/App.vue */ \"./Client/Vue Views/App.vue\");\n\n\nvue__WEBPACK_IMPORTED_MODULE_0__[\"default\"].config.productionTip = false;\nnew vue__WEBPACK_IMPORTED_MODULE_0__[\"default\"]({\n  el: '#app',\n  template: '<App />',\n  components: {\n    App: _Vue_Views_App_vue__WEBPACK_IMPORTED_MODULE_1__[\"default\"]\n  }\n});\n\n//# sourceURL=webpack:///./Client/app.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ \"./node_modules/vue/dist/vue.esm.js\");\n/* harmony import */ var _Vue_Views_App_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Vue Views/App.vue */ \"./Client/Vue Views/App.vue\");\n/* harmony import */ var _Workspace_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Workspace.js */ \"./Client/Workspace.js\");\n\n\n\nvue__WEBPACK_IMPORTED_MODULE_0__[\"default\"].config.productionTip = false;\n\nasync function init() {\n  const response = await fetch('/api/workspace?workspaceId=1');\n  const data = await response.json();\n  let workspace = new _Workspace_js__WEBPACK_IMPORTED_MODULE_2__[\"Workspace\"](data);\n  const section = workspace.getSection(1);\n  section.Id = 6;\n  console.log(section.Id);\n}\n\ninit();\nnew vue__WEBPACK_IMPORTED_MODULE_0__[\"default\"]({\n  el: '#app',\n  template: '<App />',\n  components: {\n    App: _Vue_Views_App_vue__WEBPACK_IMPORTED_MODULE_1__[\"default\"]\n  }\n});\n\n//# sourceURL=webpack:///./Client/app.js?");
 
 /***/ }),
 

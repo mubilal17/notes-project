@@ -11,6 +11,24 @@ class Section {
         this.pageIdCounter = 0;
     }
 
+    get Id()
+    {
+        return this.id;
+    }
+
+    set Id(value)
+    {
+        this.id = value;
+    }
+
+    get Title() {
+        return this.title;
+    }
+
+    set Title(value)
+    {
+        this.title = value;
+    }
   
     appendNewPage()
     {
@@ -23,11 +41,6 @@ class Section {
     {
         page.id = this.getNextPageId();
         this.pages.push(page);
-    }
-
-    updatePage(pageId, page)
-    {
-        throw new Error('updatePage not implemented yet');
     }
     removePage(pageId)
     {
