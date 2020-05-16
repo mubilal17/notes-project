@@ -2,9 +2,9 @@
   "name": "notes",
   "private": true,
   "scripts": {
-    "build": "webpack --mode=development --watch",
-    "release": "webpack --mode=production",
-    "publish": "npm run release && dotnet publish -c Release"
+    "watch": "webpack --mode=development --watch",
+    "build": "webpack --mode=development",
+    "release": "webpack --mode=production"
   },
   "babel": {
     "presets": [

@@ -3,14 +3,13 @@ var path = require('path');
 
 module.exports = {
     entry: {
-        app: './Client/app.js'
+        app: './app.js'
     },
     output: {
-        path: path.resolve(__dirname, "wwwroot"),
+        path: path.resolve('../Notes/wwwroot/'),
         filename: "bundle.js",
-        publicPath: "/"
     },
-    context: __dirname,
+    context: path.resolve('src'),
     mode: 'development',
     module: {
         rules: [
@@ -18,14 +17,10 @@ module.exports = {
                 test: /\.vue$/,
                 loader: 'vue-loader'
             },
-            // this will apply to both plain `.js` files
-            // AND `<script>` blocks in `.vue` files
             {
                 test: /\.js$/,
                 loader: 'babel-loader'
             },
-            // this will apply to both plain `.css` files
-            // AND `<style>` blocks in `.vue` files
             {
                 test: /\.css$/,
                 use: [
@@ -42,7 +37,6 @@ module.exports = {
         }
     },
     plugins: [
-        // make sure to include the plugin for the magic
         new VueLoaderPlugin()
     ]
 }
