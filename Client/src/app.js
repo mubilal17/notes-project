@@ -9,12 +9,18 @@ async function init()
     const data = await response.json();
     let workspace = new Workspace(data);
     const section = workspace.getSection(1);
+
+    new Vue({
+        el: '#app',
+        data: { workspace: workspace },
+        template: '<App v-bind:workspace="workspace" />',
+        components: {
+            'App': App
+        }
+    });
+
+
 }
 
 init()
 
-new Vue({
-    el: '#app',
-    template: '<App />',
-    components: { App }
-});

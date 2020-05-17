@@ -9,8 +9,13 @@ class Section extends RepositoryNode {
         this.id = id != undefined ? id : 0;
         this.title = title != undefined ? title : 'Untitled Page';
         this.pages = pages != undefined ? pages : [];
-
-        this.pageIdCounter = 0;
+        let maxNumber = 0;
+        this.pages.forEach(page =>
+        {
+            if (page.id > maxNumber)
+                maxNumber = page.id;
+        });
+        this.pageIdCounter = maxNumber + 1;
     }
 
     get Id()
@@ -36,6 +41,7 @@ class Section extends RepositoryNode {
     {
         let id = this.getNextPageId();
         let page = new Page(id)
+        console.log(this);
         this.pages.push(page);
     }
 

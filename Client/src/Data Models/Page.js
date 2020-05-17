@@ -8,10 +8,10 @@ class Page extends RepositoryNode {
     {
         super();
         this.id = id;
-        this.title = title;
-        this.elements = elements;
+        this.title = title != null ? title : 'Untitled Page';
+        this.elements = elements != null ? elements : [];
         let maxNumber = 0;
-        elements.forEach(element => {
+        this.elements.forEach(element => {
             if (element.id > maxNumber)
                 maxNumber = element.id;
         });

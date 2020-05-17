@@ -56,7 +56,18 @@
     const sections = getTemporarySectionData();
     const focusedSection = sections[0];
     const focusedPage = sections[0].pages[0];
+
+
     export default {
+        created: function ()
+        {
+            console.log('created');
+            let workspace = this.workspace;
+            this.workspaceTitle = "testing";
+            this.sections = workspace.sections;
+            this.focusedSection = workspace.sections[0];
+            this.focusedPage = workspace.sections[0].pages[0];
+        },
         data: function() {
             return {
                 workspaceTitle: "Mathematics",
@@ -95,5 +106,6 @@
             },
 
         },
+        props: ['workspace']
     }
 </script>

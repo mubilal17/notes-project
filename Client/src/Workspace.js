@@ -8,6 +8,7 @@ class Workspace
     {
         this.id = workspaceJSON.id;
         this.title = workspaceJSON.title;
+        this.onDataUpdate = this.onDataUpdate.bind(this);
         this.sections = [];
         for (let i = 0; i < workspaceJSON.sections.length; i++)
         {
@@ -33,8 +34,6 @@ class Workspace
             section.addOnUpdatePropertyHandler(this.onDataUpdate);
             this.sections.push(section);
         }
-
-        console.log(this.sections);
     }
 
     getSection(sectionId)
@@ -44,7 +43,31 @@ class Workspace
 
     onDataUpdate(obj, property, value)
     {
-        //update data on server
+        let type = obj.constructor.name;
+        if (type == 'Section')
+            this.updateSection(obj, property, value);
+        else if (type == 'Page')
+            this.updatePage(obj, property, value);
+        else if (type == 'PageElement')
+            this.updatePageElement(obj, property, value);
+        else
+            throw new Error('Could not find suitable element - Workspace.js');
+    }
+
+    updateSection(section, property, value)
+    {
+        console.log('updating section');
+        console.log(value);
+    }
+
+    updatePage(page, property, value)
+    {
+        console.log('updating page');
+    }
+
+    updatePageElement(element, property, value)
+    {
+        console.log('updating element');
     }
 }
 export { Workspace };
