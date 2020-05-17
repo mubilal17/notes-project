@@ -36,6 +36,7 @@ namespace Notes.Data.Models
         {
             int id = elementIdCounter.getNextThenIncrement();
             element.Id = id;
+            Elements.Add(element);
         }
 
         public void addElements(params PageElement[] elements)

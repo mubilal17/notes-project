@@ -1,22 +1,21 @@
 
 class RepositoryNode {
 
-
     constructor() {
-        this.onUpdate = null;
         return new Proxy(this, {
             set: (obj, property, value) => {
                 obj[property] = value;
-                if (this.onUpdate != null) {
-                    this.updateHandler(obj, property);
+                if (this.updateHandler != null) {
+                    this.updateHandler(obj, property, value);
                 }
                 return true;
             }
         });
     }
 
-    onPropertyUpdate(updateHandler) {
-        this.updateHandler = updateHandler;
+    addOnUpdatePropertyHandler(eventHandler)
+    {
+        this.updateHandler = eventHandler;
     }
 }
 

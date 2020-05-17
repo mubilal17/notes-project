@@ -9,8 +9,6 @@ async function init()
     const data = await response.json();
     let workspace = new Workspace(data);
     const section = workspace.getSection(1);
-    section.Id = 6;
-    console.log(section.Id);
 }
 
 init()
