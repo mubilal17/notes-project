@@ -21,6 +21,10 @@ namespace Notes
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                    string port = Environment.GetEnvironmentVariable("PORT");
+                    Console.WriteLine("Got Port: " + port);
+                    if (port != null)
+                        webBuilder.UseUrls("http://0.0.0.0:" + port);
                 });
     }
 }
