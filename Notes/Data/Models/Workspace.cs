@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Web_Server.Data.ResultModels;
 
 namespace Notes.Data.Models
 {
@@ -39,5 +40,7 @@ namespace Notes.Data.Models
         {
             return Sections.Find(section => section.Id == sectionId);
         }
+
+
     }
 }

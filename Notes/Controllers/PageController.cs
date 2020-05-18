@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Notes.Data;
 using Notes.Data.Models;
+using Web_Server.Data.ResultModels;
 
 namespace Notes.Controllers
 {
@@ -21,9 +22,17 @@ namespace Notes.Controllers
         }
 
         [HttpGet]
-        public Page Get(int workspaceId, int sectionId, int pageId)
+        public PageResult Get(int workspaceId, int sectionId, int pageId)
         {
-            return repository.getPage(workspaceId, sectionId, pageId);
+            PageResult pageResult = repository.GetPage(workspaceId, sectionId, pageId);
+            return pageResult;
+        }
+
+        [HttpPost]
+        public PageResult CreateNewPage(int workspaceId, int sectionId)
+        {
+            PageResult pageResult = repository.appendNewPageToSection(workspaceId, sectionId);
+            return pageResult;
         }
     }
 }

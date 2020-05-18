@@ -4,6 +4,7 @@ using Notes.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Web_Server.Data.ResultModels;
 using Xunit;
 
 
@@ -23,20 +24,20 @@ namespace Tests.API_Tests
             SectionController sectionController = new SectionController(repository);
             int workspaceId = 1, sectionId = 1;
 
-            Section section = sectionController.Get(workspaceId, sectionId);
+            SectionResult section = sectionController.Get(workspaceId, sectionId);
 
             Assert.NotNull(section);
         }
 
         [Fact]
-        public void NullOnNonExistingSection()
+        public void notSuccessfulOnNonExistingSection()
         {
             SectionController sectionController = new SectionController(repository);
             int workspaceId = 1, sectionId = 55;
 
-            Section section = sectionController.Get(workspaceId, sectionId);
+            SectionResult section = sectionController.Get(workspaceId, sectionId);
 
-            Assert.Null(section);
+            Assert.False(section.Success);
         }
     }
 }

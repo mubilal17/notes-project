@@ -4,6 +4,7 @@ using Notes.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Web_Server.Data.ResultModels;
 using Xunit;
 
 namespace Tests.API_Tests
@@ -23,20 +24,20 @@ namespace Tests.API_Tests
             PageController controller = new PageController(repository);
             int workspaceId = 1, sectionId = 1, pageId = 1;
 
-            Page page = controller.Get(workspaceId, sectionId, pageId);
+            PageResult page = controller.Get(workspaceId, sectionId, pageId);
 
             Assert.NotNull(page);
         }
 
         [Fact]
-        public void nullOnNonexistingPage()
+        public void notSuccessfulOnNonexistingPage()
         {
             PageController controller = new PageController(repository);
             int workspaceId = 1, sectionId = 1, pageId = 55;
 
-            Page page = controller.Get(workspaceId, sectionId, pageId);
+            PageResult page = controller.Get(workspaceId, sectionId, pageId);
 
-            Assert.Null(page);
+            Assert.False(page.Success);
         }
     }
 }

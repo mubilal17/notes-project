@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Notes.Data;
 using Notes.Data.Models;
+using Web_Server.Data.ResultModels;
 
 namespace Notes.Controllers
 {
@@ -21,9 +22,11 @@ namespace Notes.Controllers
         }
 
         [HttpGet]
-        public Section Get(int workspaceId, int sectionId)
+        public SectionResult Get(int workspaceId, int sectionId)
         {
-            return repository.getSection(workspaceId, sectionId);
+            return repository.GetSection(workspaceId, sectionId);
         }
+
+
     }
 }
