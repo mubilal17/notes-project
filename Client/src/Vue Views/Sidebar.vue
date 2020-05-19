@@ -10,8 +10,6 @@
             </button>
             <br />
 
-            <p class="text-center mt-5 display-4" style="font-size: 1.5em"> {{workspaceTitle}} </p>
-            <hr />
         </div>
 
         <slot />
@@ -24,6 +22,7 @@
 
 <script>
     export default {
+
         data: function() {
             return {
                 greeting: "Hello"
