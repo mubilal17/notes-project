@@ -5,10 +5,7 @@
         <Sidebar >
             <WorkspaceNav v-bind:workspace="workspace" v-on:navpageclick="onPageClicked" v-bind:active-section="focusedSection" v-bind:active-page="focusedPage"/>
         </Sidebar>
-        <Editor v-bind:page="focusedPage" v-bind:section-title="focusedSection.title"
-            v-on:pageTitleChange="onFocusedPageTitleChanged"
-            v-on:pageElementModified="onFocusedPageElementUpdated"
-            v-on:newElementToPage="onNewElementToFocusedPage" />
+        <Editor v-bind:page="focusedPage" v-bind:section-title="focusedSection.title" />
     </div>
 </template>
 
