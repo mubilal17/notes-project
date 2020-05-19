@@ -6,7 +6,7 @@ cd Client && webpack
 cd ../Notes
 
 ## Publish the Web Server
-dotnet publish
+dotnet publish -c Debug -o published
 
 
 cd ..
@@ -15,5 +15,4 @@ cd ..
 rm -rf Build
 
 # Copy the contents of the Web Server into Build/.
-mkdir Build
-cp -r Notes/bin/Debug/netcoreapp3.1/* Build
+mv Notes/published Build
