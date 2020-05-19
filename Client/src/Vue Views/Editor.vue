@@ -1,5 +1,5 @@
 <template>
-    <div id="editor-container" class="col-9">
+    <div id="editor-container" class="col-12 col-lg-10 col-xl-10">
         <div id="editor" class="container bg-white shadow w-100 vh-100 px-4 pt-2 border rounded">
             <header class="mt-5 px-3 py-3 pb-1  display-4" style="font-size: 25px" >
                 <span class="text-muted"> {{sectionTitle}} / </span>

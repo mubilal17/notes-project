@@ -1,7 +1,7 @@
 
 
 <template>
-    <div class="row h-100 w-100">
+    <div class="row h-100 w-100 m-0">
         <Sidebar v-bind:workspace-title="workspaceTitle">
             <div v-for="section in sections">
                 <SidebarSection v-bind:section="section" v-on:add-new-page-to-section="onNewPageToSection">
