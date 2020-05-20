@@ -8,6 +8,7 @@ class PageElement extends RepositoryNode
         this.id = elementId != undefined ? elementId : 0;
         this.type = type != undefined ? type : 'p';
         this.content = content;
+        this.index = null;
     }
 
 }

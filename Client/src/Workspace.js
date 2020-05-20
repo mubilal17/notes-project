@@ -56,18 +56,18 @@ class Workspace
 
     updateSection(section, property, value)
     {
-        console.log('updating section');
-        console.log(value);
+        //console.log('updating section');
+        //console.log(value);
     }
 
     updatePage(page, property, value)
     {
-        console.log('updating page');
+        //console.log('updating page');
     }
 
     updatePageElement(element, property, value)
     {
-        console.log('updating element');
+        //console.log('updating element');
     }
 }
 export { Workspace };

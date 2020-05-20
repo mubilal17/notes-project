@@ -1,9 +1,10 @@
 
-<template>
-    <form>
-        <div  class="form-row my-3" v-on:dragover="dragOver" v-on:drop="drop">
-            <div class="col align-middle p-auto" draggable="true" v-on:dragstart="drag"  >
-                <span class="btn btn-outline-secondary border-0 material-icons">drag_handle</span>
+<template class="m-0 p-0">
+    <form v-bind:id="elementId" v-on:dragover="dragOver" v-on:drop="drop"
+          v-on:dragenter="onDragEnter" v-on:dragleave="onDragLeave" class="m-0 p-0">
+        <div class="form-row">
+            <div class="col align-middle p-auto" draggable="true" v-on:dragstart="drag">
+                <a class="border-0 material-icons">drag_handle</a>
             </div>
             <div class="col-11">
                 <input class="form-control border-0" v-model="element.content"
@@ -11,10 +12,10 @@
                        v-bind:class="{shadow: showShadow}"
                        v-on:input="onInputChange"
                        v-on:focusin="isFocused = true" v-on:focusout="isFocused = false"
-                       v-on:mouseenter="isHovered = true" v-on:mouseleave="isHovered = false" 
-                       />
+                       v-on:mouseenter="isHovered = true" v-on:mouseleave="isHovered = false" />
             </div>
         </div>
+        <hr v-if="isDragHovered" />
     </form>
 </template>
 
@@ -24,35 +25,52 @@
     export default {
         data: function ()
         {
-            return { isFocused: false, isHovered: false };
+            return { isFocused: false, isHovered: false, isDragHovered: false};
         },
         computed: {
             showShadow: function ()
             {
                 return this.isFocused || this.isHovered;
-            }
+            },
+            elementId: function ()
+            {
+                return 'pageElement' + this.element.id;
+            },
         },
         props: ['element'],
         methods: {
+            onDragEnter: function (event)
+            {
+                this.isDragHovered = true;
+            },
+            onDragLeave: function ()
+            {
+                this.isDragHovered = false;
+            },
             onInputChange: function (event)
             {
                 this.$emit('inputModified', event);
             },
             dragOver: function (event)
             {
-
                 event.preventDefault();
             },
             drag: function (event)
             {
                 let element = this.element;
-                console.log('drag start on element.id = ' + element.id);
                 event.dataTransfer.setData('elementId', element.id);
+                event.dataTransfer.setData('elementIndex', element.index);
             },
             drop: function (event)
             {
                 let elementId = event.dataTransfer.getData('elementId');
-                console.log('drag dropped from element.id = ' + elementId +  ' onto element.id = ' + this.element.id);
+                let elementIndex = event.dataTransfer.getData('elementIndex');
+                this.isDragHovered = false;
+                if (elementId != this.element.id)
+                {
+                    const elementReorderedEvent = { elementId: elementId, index: this.element.index, isPlaceBefore: elementIndex < this.element.index};
+                    this.$emit('elementReordered', elementReorderedEvent);
+                }
             }
         }
     }
@@ -61,5 +79,11 @@
 <style scoped>
     input {
         font-size: 1.25em;
+    }
+
+    hr {
+        height: 1px;
+        margin: 0px;
+        padding: 0px;
     }
 </style>

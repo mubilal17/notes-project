@@ -8,9 +8,10 @@
             </header>
 
             <div class="m-5">
-                <div v-for="element in page.elements">
+                <div v-for="element in page.elements" class="m-0 p-0">
                     <PageElement v-bind:element="element"
-                        v-on:inputModified="$emit('pageElementModified', $event)"/>
+                        v-on:inputModified="$emit('pageElementModified', $event)"
+                                 v-on:elementReordered="onPageElementReordered"/>
                 </div>
                 <button class="btn btn-sm btn-outline-light text-muted border-0 ml-5" href="#"
                     v-on:click="addNewElementToPage">
@@ -31,6 +32,10 @@
             addNewElementToPage: function(event) {
                 this.page.appendNewElement()
                 this.$emit('newElementToPage', event);
+            },
+            onPageElementReordered: function (event)
+            {
+                this.page.moveElementTo(event.elementId, event.index, event.isPlaceBefore);
             }
         },
         components: {
