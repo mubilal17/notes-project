@@ -3,8 +3,8 @@
     <form v-bind:id="elementId" v-on:dragover="dragOver" v-on:drop="drop"
           v-on:dragenter="onDragEnter" v-on:dragleave="onDragLeave" class="m-0 p-0">
         <div class="form-row">
-            <div class="col align-middle p-auto" draggable="true" v-on:dragstart="drag">
-                <a class="border-0 material-icons">drag_handle</a>
+            <div class="col align-middle pt-2" draggable="true" v-on:dragstart="drag">
+                <a class="border-0 material-icons drag-handle">drag_handle</a>
             </div>
             <div class="col-11">
                 <input class="form-control border-0" v-model="element.content"
@@ -85,5 +85,13 @@
         height: 1px;
         margin: 0px;
         padding: 0px;
+    }
+
+    .drag-handle {
+        visibility: hidden;
+    }
+
+    form:hover .drag-handle {
+        visibility: visible;
     }
 </style>
