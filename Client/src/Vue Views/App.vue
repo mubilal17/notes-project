@@ -5,7 +5,7 @@
         <Sidebar >
             <WorkspaceNav v-bind:workspace="workspace" v-on:navpageclick="onPageClicked" v-bind:active-section="focusedSection" v-bind:active-page="focusedPage"/>
         </Sidebar>
-        <Editor v-bind:page="focusedPage" v-bind:section-title="focusedSection.title" />
+        <Editor v-bind:page="focusedPage" v-bind:section-title="focusedSection.title" v-bind:show-contents="showContents"/>
     </div>
 </template>
 
@@ -30,7 +30,8 @@
             return {
                 sections: null,
                 focusedSection: null,
-                focusedPage: null
+                focusedPage: null,
+                showContents: true
             };
         },
         components: {
@@ -41,12 +42,15 @@
         methods: {
             onPageClicked: function (event)
             {
-                console.log('clicked');
-                console.log(event);
-                let focusedSection = this.sections.find( section => section.id == event.sectionId);
+                let focusedSection = this.sections.find(section => section.id == event.sectionId);
+                this.showContents = false;
                 let page = focusedSection.pages.find(page => page.id == event.pageId);
                 this.focusedSection = focusedSection;
                 this.focusedPage = page;
+                setTimeout(() =>
+                {
+                    this.showContents = true;
+                }, 100);
             }
         },
         props: ['workspace']
