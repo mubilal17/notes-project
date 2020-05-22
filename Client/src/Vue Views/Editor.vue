@@ -13,7 +13,9 @@
                         <div v-for="element in page.elements" class="m-0 p-0">
                             <PageElement v-bind:element="element"
                                          v-on:inputModified="$emit('pageElementModified', $event)"
-                                         v-on:elementReordered="onPageElementReordered" />
+                                         v-on:elementReordered="onPageElementReordered" 
+                                         v-on:onkeyenter="onPageElementKeyEnter"
+                                         v-on:onDeleteClick="DeletePageElement" />
                         </div>
                         <button class="btn btn-sm btn-outline-light text-muted border-0 ml-5" href="#"
                                 v-on:click="addNewElementToPage">
@@ -40,6 +42,16 @@
             onPageElementReordered: function (event)
             {
                 this.page.moveElementTo(event.elementId, event.index, event.isPlaceBefore);
+            },
+            onPageElementKeyEnter: function (event)
+            {
+                let index = this.page.addElementAfterIndex(event.index);
+
+            },
+            DeletePageElement: function (event)
+            {
+                let id = event.elementId;
+                this.page.deleteElement(id);
             }
         },
         components: {

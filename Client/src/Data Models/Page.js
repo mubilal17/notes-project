@@ -39,6 +39,16 @@ class Page extends RepositoryNode {
         element.indexCounter = this.indexCounter++;
     }
 
+    addElementAfterIndex(index, type = 'p')
+    {
+        const id = this.getNextElementId();
+        let element = new PageElement(id, type);
+        this.elements.push(element);
+        this.moveElementTo(id, index, true);
+        this.elements.sort((a, b) => a.index - b.index);
+        return element.index;
+    }
+
     getElement(elementId)
     {
         return this.elements.find( element => element.id == elementId);
@@ -57,7 +67,7 @@ class Page extends RepositoryNode {
 
     deleteElement(elementId)
     {
-        throw new Error('deleteElement not implemented yet');
+        this.elements = this.elements.filter(element => element.id != elementId);
     }
 
     moveElementTo(elementId, index, beforeIndex = false)

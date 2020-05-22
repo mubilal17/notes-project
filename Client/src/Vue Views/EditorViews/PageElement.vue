@@ -1,16 +1,19 @@
 
 <template class="m-0 p-0">
-    <form v-bind:id="elementId" v-on:dragover="dragOver" v-on:drop="drop"
+    <form v-bind:id="elementId" v-on:dragover="dragOver" v-on:drop="drop" v-on:submit.prevent
           v-on:dragenter="onDragEnter" v-on:dragleave="onDragLeave" class="m-0 p-0">
         <div class="form-row">
-            <div class="col align-middle pt-2" draggable="true" v-on:dragstart="drag">
-                <a class="border-0 material-icons drag-handle">drag_handle</a>
+            <div class="col align-middle pt-2">
+                <a class="border-0 material-icons hover-icon" v-on:click="onDeleteClick">close</a>
+                <a class="border-0 material-icons hover-icon" draggable="true" v-on:dragstart="drag">drag_handle</a>
             </div>
             <div class="col-11">
-                <input class="form-control border-0" v-model="element.content"
+                <input v-bind:id="elementId + 'input'"
+                       class="form-control border-0" v-model="element.content"
                        placeholder="Content goes here..."
                        v-bind:class="{shadow: showShadow}"
                        v-on:input="onInputChange"
+                       v-on:keyup.enter="onKeyEnter"
                        v-on:focusin="isFocused = true" v-on:focusout="isFocused = false"
                        v-on:mouseenter="isHovered = true" v-on:mouseleave="isHovered = false" />
             </div>
@@ -23,6 +26,9 @@
 
 <script>
     export default {
+        created: function ()
+        {
+        },
         data: function ()
         {
             return { isFocused: false, isHovered: false, isDragHovered: false};
@@ -49,7 +55,11 @@
             },
             onInputChange: function (event)
             {
-                this.$emit('inputModified', event);
+                //console.log(event);
+            },
+            onKeyEnter: function (event)
+            {
+                this.$emit('onkeyenter', { elementId: this.element.id, index: this.element.index });
             },
             dragOver: function (event)
             {
@@ -71,6 +81,10 @@
                     const elementReorderedEvent = { elementId: elementId, index: this.element.index, isPlaceBefore: elementIndex < this.element.index};
                     this.$emit('elementReordered', elementReorderedEvent);
                 }
+            },
+            onDeleteClick: function (event)
+            {
+                this.$emit('onDeleteClick', { elementId: this.element.id });
             }
         }
     }
@@ -87,11 +101,30 @@
         padding: 0px;
     }
 
-    .drag-handle {
-        visibility: hidden;
+    .hover-icon {
+        opacity: 0;
     }
 
-    form:hover .drag-handle {
-        visibility: visible;
+    .hover-icon:hover {
+        background-color: darkgray;
+        border-radius: 1em;
     }
+
+    form:hover .hover-icon {
+        animation-name: hoverIconAnim;
+        animation-duration: 0.5s;
+        animation-fill-mode: forwards;
+    }
+
+    @keyframes hoverIconAnim {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 0.5;
+        }
+    }
+
+
 </style>
