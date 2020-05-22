@@ -40,6 +40,9 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="src\Data Models\Section.js" />
+    <Content Include="src\MathJax.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="src\Vue Views\App.vue" />
     <Content Include="src\Vue Views\Editor.vue" />
     <Content Include="src\Vue Views\EditorViews\PageElement.vue" />

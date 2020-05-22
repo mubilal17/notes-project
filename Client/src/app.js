@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './Vue Views/App.vue'
 import { Workspace } from './Workspace.js'
+//require('./MathJax.js');
 Vue.config.productionTip = false;
 
 async function init()
